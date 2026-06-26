@@ -24,7 +24,7 @@ class Subject(models.Model):
                             help_text='Уникальный идентификатор для URL. Автоматически генерируется из названия.')
 
     class Meta:
-        verbose_name ='Предмет'
+        verbose_name = 'Предмет'
         verbose_name_plural = 'Предметы'
         ordering = ['title']
 
@@ -49,19 +49,24 @@ class Course(models.Model):
     owner = models.ForeignKey(
         User,
         related_name='courses_created',
-        on_delete=models.CASCADE
+        on_delete=models.CASCADE,
+        verbose_name='Преподаватель'
     )
     subject = models.ForeignKey(
         Subject,
         related_name='courses',
-        on_delete=models.CASCADE
+        on_delete=models.CASCADE,
+        verbose_name='Предмет'
     )
-    title = models.CharField(max_length=200)
+    title = models.CharField(max_length=200, verbose_name='Название',
+                             help_text='Название курса(Например: Python, Django)')
     slug = models.SlugField(max_length=200, unique=True)
     overview = models.TextField()
     created = models.DateTimeField(auto_now_add=True)
 
     class Meta:
+        verbose_name = 'Курс'
+        verbose_name_plural = 'Курсы'
         ordering = ['-created']
 
     def __str__(self):
@@ -87,4 +92,3 @@ class Module(models.Model):
     def __str__(self):
         """Возвращает строковое представление модуля"""
         return self.title
-
