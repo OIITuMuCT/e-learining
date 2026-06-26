@@ -1,3 +1,5 @@
+from educa.educa.settings import MEDIA_URL
+
 # Документация приложения: [Educa]
 
 ## 1. Обзор (Overview)
@@ -32,7 +34,7 @@ django-admin startapp courses
 ```python
 INSTALLED_APPS = [
     # ...
-    '[app_name]',
+    'courses.apps.CoursesConfig',
 ]
 ```
 
@@ -40,13 +42,16 @@ INSTALLED_APPS = [
 Переменные и параметры, специфичные для этого приложения, которые можно переопределить в `settings.py`:
 ```python
 # Описание настройки
-APP_NAME_SETTING_NAME = 'value'
+# media files
+MEDIA_URL = 'media/'
+MEDIA_ROOT = BASE_DIR / 'media'
+
 ```
 
 ### 2.3. Миграции
 Примените миграции для создания таблиц в базе данных:
 ```bash
-python manage.py makemigrations [app_name]
+python manage.py makemigrations [courses]
 python manage.py migrate
 ```
 
@@ -54,6 +59,23 @@ python manage.py migrate
 Краткое описание моделей и связей. 
 * **`ModelName`**: Описание сущности (например, `Product`).
   * `field_name` (тип): Описание поля.
+
+* **`Subject`**: Модель Предмета
+  * `title` (str): Название предмета
+  * `slug` (str): URL-идентификатор
+
+* **`Course`**: Модель Курса
+  * `owner` (ForeignKey): Преподаватель (User)  создавший курс
+  * `subject` (ForeignKey): Внешний ключ связана с моделью `Subject`
+  * `title` (str): Название курса
+  * `slug` (str): URL-идентификатор
+  * `overview` (str): Краткое описание курса
+  * `created` (date): Дата и время создания курса
+
+* **`Module`**: Модель Модуль курса
+  * `course` (ForeignKey): Связанна с моделью `Course`
+  * `title` (str): Название модуля
+  * `description` (str): Описание модуля
 
 ## 4. Маршрутизация (URLs)
 Список доступных эндпоинтов, предоставляемых приложением.
