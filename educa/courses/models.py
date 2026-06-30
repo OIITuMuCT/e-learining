@@ -1,6 +1,7 @@
 from django.contrib.auth.models import User
 from django.db import models
-
+from django.contrib.contenttypes.fields import GenericForeignKey
+from django.contrib.contenttypes.models import ContentType
 
 class Subject(models.Model):
     """ Модель предмета/дисциплины
@@ -86,9 +87,75 @@ class Module(models.Model):
     course = models.ForeignKey(
         Course, related_name='modules', on_delete=models.CASCADE
     )
-    title = models.CharField(max_length=200)
-    description = models.TextField(blank=True)
+    title = models.CharField(max_length=200, verbose_name='Модуль', help_text='Название модуля')
+    description = models.TextField(blank=True, verbose_name='Краткое описание')
 
     def __str__(self):
         """Возвращает строковое представление модуля"""
         return self.title
+
+
+class Content(models.Model):
+    """Модель Контент
+
+    Устанавливает обобщенное отношение, чтобы связывать объекты из разных моделей,
+    которые представляют разные типы содержимого.
+    Attributes:
+         content_type (ForeignKey): Связана с моделью: ContentType
+         object_id (int): Поле для хранения первичного ключа связанного объекта
+         item (GenericForeignKey): Поле для связанного объекта, объединяющее два предыдущих поля.
+    Note: Text, File, Image, Video
+    """
+    module = models.ForeignKey(
+        Module,
+        related_name='contents',
+        on_delete=models.CASCADE,
+    )
+    content_type = models.ForeignKey(
+        ContentType,
+        on_delete=models.CASCADE
+    )
+    object_id = models.PositiveIntegerField()
+    item = GenericForeignKey('content_type', 'object_id')
+
+
+class ItemBase(models.Model):
+    """Абстрактная модель
+
+    Указанные поля будут использоваться для всех типов содержимого.
+    Attributes:
+        owner (str): хранит создавшего контент пользователя.
+        title (str): Название контента
+    """
+    owner = models.ForeignKey(User, related_name='%(class)s_related', on_delete=models.CASCADE)
+    title = models.CharField(max_length=250)
+    created = models.DateTimeField(auto_now_add=True)
+    updated = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        abstract = True
+
+    def __str__(self):
+        return self.title
+
+class Text(ItemBase):
+    """Модель Text для хранения тестового содержимого. """
+    content = models.TextField()
+
+class File(ItemBase):
+    """Модель File для хранения файлов, например PDF-файлов."""
+    file = models.FileField(upload_to=''
+                                      'files')
+
+class Image(ItemBase):
+    """Модель Image для хранения файлов изображений."""
+    file = models.ImageField(upload_to='images')
+
+class Video(ItemBase):
+    """Модель Video
+
+    для хранения видео, поле URLField используется,
+    чтобы предоставлять URL-адрес видео для его встраивания в контент.
+    """
+    url = models.URLField()
+
