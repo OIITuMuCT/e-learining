@@ -3,6 +3,8 @@ from django.db import models
 from django.contrib.contenttypes.fields import GenericForeignKey
 from django.contrib.contenttypes.models import ContentType
 
+from .fields import OrderField
+
 class Subject(models.Model):
     """ Модель предмета/дисциплины
 
@@ -89,10 +91,14 @@ class Module(models.Model):
     )
     title = models.CharField(max_length=200, verbose_name='Модуль', help_text='Название модуля')
     description = models.TextField(blank=True, verbose_name='Краткое описание')
+    order = OrderField(blank=True, for_fields=['course'])
+
+    class Meta:
+        ordering = ['order']
 
     def __str__(self):
         """Возвращает строковое представление модуля"""
-        return self.title
+        return f'{self.order}. {self.title}'
 
 
 class Content(models.Model):
@@ -123,7 +129,10 @@ class Content(models.Model):
     )
     object_id = models.PositiveIntegerField()
     item = GenericForeignKey('content_type', 'object_id')
+    order = OrderField(blank=True, for_fields=['module'])
 
+    class Meta:
+        ordering = ['order']
 
 class ItemBase(models.Model):
     """Абстрактная модель
