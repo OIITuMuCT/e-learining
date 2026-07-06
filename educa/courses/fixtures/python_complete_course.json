@@ -1,0 +1,1751 @@
+{
+  "course": {
+    "name": "Полный курс Python",
+    "name_en": "Complete Python Course",
+    "version": "1.0.0",
+    "year": 2026,
+    "description": "Полный курс Python от основ до профессиональных областей",
+    "description_en": "Complete Python Course from basics to professional areas",
+    "total_topics": 100,
+    "total_modules": 24
+  },
+  "modules": [
+    {
+      "id": "01",
+      "name": "Основы Python",
+      "name_en": "Python Basics",
+      "emoji": "📚",
+      "topics": [
+        {
+          "id": "01",
+          "name": "Введение и настройка",
+          "name_en": "Introduction & Setup",
+          "emoji": "🚀",
+          "subtopics": [
+            "Установка Python / Python Installation",
+            "IDE и редакторы / IDE and Editors",
+            "Первая программа / First Program",
+            "Синтаксис и структура / Syntax and Structure"
+          ]
+        },
+        {
+          "id": "02",
+          "name": "Основы синтаксиса",
+          "name_en": "Basic Syntax",
+          "emoji": "📝",
+          "subtopics": [
+            "Переменные / Variables",
+            "Типы данных / Data Types",
+            "Операторы / Operators",
+            "Комментарии / Comments",
+            "Отступы / Indentation",
+            "Ввод и вывод / Input and Output"
+          ]
+        },
+        {
+          "id": "03",
+          "name": "Типы данных",
+          "name_en": "Data Types",
+          "emoji": "🔢",
+          "subtopics": [
+            "Числа / Numbers (int, float, complex)",
+            "Строки / Strings (str)",
+            "Списки / Lists (list)",
+            "Кортежи / Tuples (tuple)",
+            "Словари / Dictionaries (dict)",
+            "Множества / Sets (set)",
+            "Булевы значения / Booleans (bool)",
+            "Тип None / NoneType",
+            "Преобразование типов / Type Conversion",
+            "Проверка типов / Type Checking",
+            "Подсказки типов / Type Hints"
+          ]
+        },
+        {
+          "id": "04",
+          "name": "Управляющие конструкции",
+          "name_en": "Control Flow",
+          "emoji": "🎯",
+          "subtopics": [
+            "Условный оператор if / if Statement",
+            "Конструкция if-else / if-else Statement",
+            "Цепочка elif / elif Chain",
+            "Тернарный оператор / Ternary Operator",
+            "match/case / match/case (Python 3.10+)",
+            "Цикл while / while Loop",
+            "Цикл for / for Loop",
+            "Вложенные циклы / Nested Loops",
+            "break, continue, pass",
+            "Цикл с else / Loop with else"
+          ]
+        },
+        {
+          "id": "05",
+          "name": "Строки",
+          "name_en": "Strings",
+          "emoji": "📝",
+          "subtopics": [
+            "Строковые литералы / String Literals",
+            "Конкатенация / Concatenation",
+            "Индексация / Indexing",
+            "Срезы / Slicing",
+            "Методы строк / String Methods",
+            "Форматирование / Formatting",
+            "f-строки / f-strings",
+            "Сырые строки / Raw Strings",
+            "Многострочные строки / Multiline Strings",
+            "Управляющие последовательности / Escape Sequences"
+          ]
+        },
+        {
+          "id": "06",
+          "name": "Списки",
+          "name_en": "Lists",
+          "emoji": "📋",
+          "subtopics": [
+            "Создание списков / List Creation",
+            "Индексация / Indexing",
+            "Срезы / Slicing",
+            "Методы списков / List Methods",
+            "Списковые включения / List Comprehensions",
+            "Вложенные списки / Nested Lists",
+            "Обход списков / List Iteration",
+            "Копирование / Copying"
+          ]
+        },
+        {
+          "id": "07",
+          "name": "Кортежи",
+          "name_en": "Tuples",
+          "emoji": "📦",
+          "subtopics": [
+            "Создание кортежей / Tuple Creation",
+            "Индексация и срезы / Indexing and Slicing",
+            "Методы кортежей / Tuple Methods",
+            "Распаковка / Unpacking",
+            "Именованные кортежи / Named Tuples",
+            "Кортеж vs Список / Tuple vs List"
+          ]
+        },
+        {
+          "id": "08",
+          "name": "Словари",
+          "name_en": "Dictionaries",
+          "emoji": "📖",
+          "subtopics": [
+            "Создание словарей / Dictionary Creation",
+            "Доступ к значениям / Accessing Values",
+            "Добавление и обновление / Adding and Updating",
+            "Удаление элементов / Deleting Items",
+            "Методы словарей / Dictionary Methods",
+            "Словарные включения / Dictionary Comprehensions",
+            "Вложенные словари / Nested Dictionaries",
+            "Обход словарей / Dictionary Iteration",
+            "Слияние словарей / Merging Dictionaries"
+          ]
+        },
+        {
+          "id": "09",
+          "name": "Множества",
+          "name_en": "Sets",
+          "emoji": "🎲",
+          "subtopics": [
+            "Создание множеств / Set Creation",
+            "Добавление и удаление / Adding and Removing",
+            "Операции над множествами / Set Operations",
+            "Множественные включения / Set Comprehensions",
+            "Замороженные множества / Frozen Sets"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "02",
+      "name": "Продвинутый Python",
+      "name_en": "Advanced Python",
+      "emoji": "🏗️",
+      "topics": [
+        {
+          "id": "10",
+          "name": "Функции",
+          "name_en": "Functions",
+          "emoji": "⚙️",
+          "subtopics": [
+            "Определение функций / Function Definition",
+            "Аргументы и параметры / Arguments and Parameters",
+            "Возврат значений / Return Values",
+            "Области видимости / Scopes",
+            "Правило LEGB / LEGB Rule",
+            "Документирование / Docstrings",
+            "Аннотации типов / Type Annotations",
+            "Рекурсия / Recursion",
+            "Лямбда-функции / Lambda Functions",
+            "Функции высшего порядка / Higher-Order Functions",
+            "Вложенные функции / Nested Functions",
+            "Частичное применение / Partial Application"
+          ]
+        },
+        {
+          "id": "11",
+          "name": "ООП",
+          "name_en": "Object-Oriented Programming",
+          "emoji": "🏗️",
+          "subtopics": [
+            "Классы и объекты / Classes and Objects",
+            "Атрибуты / Attributes",
+            "Методы / Methods",
+            "Конструктор __init__ / Constructor",
+            "Наследование / Inheritance",
+            "Множественное наследование / Multiple Inheritance",
+            "MRO / Method Resolution Order",
+            "Инкапсуляция / Encapsulation",
+            "Полиморфизм / Polymorphism",
+            "Абстрактные классы / Abstract Classes",
+            "Магические методы / Magic Methods",
+            "Свойства / Properties (@property)",
+            "Слоты / Slots (__slots__)",
+            "Дескрипторы / Descriptors",
+            "Метаклассы / Metaclasses",
+            "Датаклассы / Dataclasses"
+          ]
+        },
+        {
+          "id": "12",
+          "name": "Итераторы и генераторы",
+          "name_en": "Iterators & Generators",
+          "emoji": "🔄",
+          "subtopics": [
+            "Итераторы / Iterators",
+            "Генераторы / Generators (yield)",
+            "Генераторные выражения / Generator Expressions",
+            "yield from",
+            "Отправка значений / Sending Values",
+            "Бесконечные итераторы / Infinite Iterators",
+            "Модуль itertools / itertools Module"
+          ]
+        },
+        {
+          "id": "13",
+          "name": "Декораторы",
+          "name_en": "Decorators",
+          "emoji": "🎨",
+          "subtopics": [
+            "Функциональные декораторы / Function Decorators",
+            "Классовые декораторы / Class Decorators",
+            "Декораторы с аргументами / Decorators with Arguments",
+            "Вложенные декораторы / Nested Decorators",
+            "functools.wraps",
+            "Кеширующие декораторы / Caching Decorators",
+            "Декораторы для тайминга / Timing Decorators",
+            "Декораторы для логирования / Logging Decorators",
+            "Встроенные декораторы / Built-in Decorators"
+          ]
+        },
+        {
+          "id": "14",
+          "name": "Контекстные менеджеры",
+          "name_en": "Context Managers",
+          "emoji": "📦",
+          "subtopics": [
+            "Оператор with / with Statement",
+            "__enter__ и __exit__",
+            "Модуль contextlib / contextlib Module",
+            "Вложенные контекстные менеджеры / Nested Context Managers",
+            "ExitStack"
+          ]
+        },
+        {
+          "id": "15",
+          "name": "Функциональное программирование",
+          "name_en": "Functional Programming",
+          "emoji": "🧮",
+          "subtopics": [
+            "map, filter, reduce",
+            "Лямбда-функции / Lambda Functions",
+            "Модуль functools / functools Module",
+            "Модуль itertools / itertools Module",
+            "Модуль operator / operator Module"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "03",
+      "name": "Работа с данными",
+      "name_en": "Data & File Handling",
+      "emoji": "📁",
+      "topics": [
+        {
+          "id": "16",
+          "name": "Файловая система",
+          "name_en": "File System",
+          "emoji": "📂",
+          "subtopics": [
+            "Открытие файлов / Opening Files",
+            "Режимы открытия / File Modes",
+            "Чтение файлов / Reading Files",
+            "Запись в файлы / Writing Files",
+            "Позиционирование / Positioning",
+            "Блок with / with Statement",
+            "CSV файлы / CSV Files",
+            "JSON файлы / JSON Files",
+            "Pickle файлы / Pickle Files",
+            "XML файлы / XML Files",
+            "YAML файлы / YAML Files",
+            "Бинарные файлы / Binary Files",
+            "Временные файлы / Temporary Files",
+            "Работа с путями / Working with Paths",
+            "Директории / Directories"
+          ]
+        },
+        {
+          "id": "17",
+          "name": "Обработка ошибок",
+          "name_en": "Error Handling",
+          "emoji": "❌",
+          "subtopics": [
+            "Синтаксические ошибки / Syntax Errors",
+            "Исключения / Exceptions",
+            "try-except",
+            "Множественные исключения / Multiple Exceptions",
+            "else-finally",
+            "raise",
+            "Пользовательские исключения / Custom Exceptions",
+            "Цепочки исключений / Exception Chaining",
+            "assert",
+            "Предупреждения / Warnings"
+          ]
+        },
+        {
+          "id": "18",
+          "name": "Логирование и отладка",
+          "name_en": "Logging & Debugging",
+          "emoji": "📊",
+          "subtopics": [
+            "Модуль logging / logging Module",
+            "Уровни логирования / Logging Levels",
+            "Обработчики / Handlers",
+            "Форматтеры / Formatters",
+            "Настройка логирования / Logging Configuration",
+            "pdb",
+            "ipdb",
+            "Отладка через print / Print Debugging",
+            "traceback"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "04",
+      "name": "Модули и пакеты",
+      "name_en": "Modules & Packages",
+      "emoji": "📦",
+      "topics": [
+        {
+          "id": "19",
+          "name": "Модули",
+          "name_en": "Modules",
+          "emoji": "📦",
+          "subtopics": [
+            "import",
+            "from-import",
+            "import as",
+            "Создание модулей / Creating Modules",
+            "Путь поиска / Search Path",
+            "Модуль sys / sys Module",
+            "__name__",
+            "Перезагрузка модулей / Reloading Modules",
+            "dir()"
+          ]
+        },
+        {
+          "id": "20",
+          "name": "Пакеты",
+          "name_en": "Packages",
+          "emoji": "🗂️",
+          "subtopics": [
+            "Структура пакетов / Package Structure",
+            "__init__.py",
+            "Относительные импорты / Relative Imports",
+            "__all__",
+            "Пространства имен / Namespaces"
+          ]
+        },
+        {
+          "id": "21",
+          "name": "Управление пакетами",
+          "name_en": "Package Management",
+          "emoji": "📥",
+          "subtopics": [
+            "pip",
+            "venv",
+            "requirements.txt",
+            "pyproject.toml",
+            "Poetry",
+            "Conda"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "05",
+      "name": "Базы данных",
+      "name_en": "Databases",
+      "emoji": "🗄️",
+      "topics": [
+        {
+          "id": "22",
+          "name": "SQLite",
+          "name_en": "SQLite",
+          "emoji": "🗄️",
+          "subtopics": [
+            "Создание БД / Database Creation",
+            "Подключение / Connection",
+            "Создание таблиц / Creating Tables",
+            "CRUD операции / CRUD Operations",
+            "Транзакции / Transactions",
+            "JOIN запросы / JOIN Queries",
+            "Агрегации / Aggregations",
+            "Параметризованные запросы / Parameterized Queries"
+          ]
+        },
+        {
+          "id": "23",
+          "name": "PostgreSQL / MySQL",
+          "name_en": "PostgreSQL / MySQL",
+          "emoji": "🐘",
+          "subtopics": [
+            "psycopg2",
+            "mysql-connector",
+            "Выполнение запросов / Executing Queries",
+            "Пул соединений / Connection Pooling",
+            "Асинхронные драйверы / Async Drivers"
+          ]
+        },
+        {
+          "id": "24",
+          "name": "ORM",
+          "name_en": "ORM",
+          "emoji": "🔗",
+          "subtopics": [
+            "SQLAlchemy",
+            "Модели / Models",
+            "Отношения / Relationships",
+            "Запросы / Queries",
+            "Миграции / Migrations",
+            "Django ORM",
+            "Peewee"
+          ]
+        },
+        {
+          "id": "25",
+          "name": "NoSQL",
+          "name_en": "NoSQL",
+          "emoji": "🍃",
+          "subtopics": [
+            "MongoDB",
+            "PyMongo",
+            "Агрегации / Aggregations",
+            "Индексы / Indexes",
+            "Redis",
+            "Кеширование / Caching",
+            "Pub/Sub",
+            "Cassandra"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "06",
+      "name": "Веб-разработка",
+      "name_en": "Web Development",
+      "emoji": "🌐",
+      "topics": [
+        {
+          "id": "26",
+          "name": "HTTP и сеть",
+          "name_en": "HTTP & Networking",
+          "emoji": "🌐",
+          "subtopics": [
+            "HTTP протокол / HTTP Protocol",
+            "Заголовки / Headers",
+            "Методы HTTP / HTTP Methods",
+            "Статус-коды / Status Codes",
+            "requests",
+            "urllib",
+            "httpx",
+            "Сокеты / Sockets",
+            "REST API",
+            "GraphQL"
+          ]
+        },
+        {
+          "id": "27",
+          "name": "Flask",
+          "name_en": "Flask",
+          "emoji": "🌶️",
+          "subtopics": [
+            "Основы Flask / Flask Basics",
+            "Маршрутизация / Routing",
+            "Шаблоны / Templates",
+            "Статические файлы / Static Files",
+            "Формы / Forms",
+            "Сессии / Sessions",
+            "Куки / Cookies",
+            "База данных / Database",
+            "Аутентификация / Authentication",
+            "REST API на Flask / REST API with Flask",
+            "Blueprint",
+            "Middleware",
+            "Обработка ошибок / Error Handling"
+          ]
+        },
+        {
+          "id": "28",
+          "name": "Django",
+          "name_en": "Django",
+          "emoji": "🎯",
+          "subtopics": [
+            "Структура проекта / Project Structure",
+            "Модели / Models",
+            "Views",
+            "Шаблоны / Templates",
+            "URL-маршрутизация / URL Routing",
+            "Формы / Forms",
+            "Админ-панель / Admin Panel",
+            "Аутентификация / Authentication",
+            "Django ORM",
+            "Миграции / Migrations",
+            "Сигналы / Signals",
+            "Middleware",
+            "CBV / Class-Based Views",
+            "DRF / Django REST Framework"
+          ]
+        },
+        {
+          "id": "29",
+          "name": "FastAPI",
+          "name_en": "FastAPI",
+          "emoji": "⚡",
+          "subtopics": [
+            "Основы FastAPI / FastAPI Basics",
+            "Параметры пути / Path Parameters",
+            "Параметры запроса / Query Parameters",
+            "Тело запроса / Request Body",
+            "Валидация / Validation",
+            "Dependency Injection",
+            "Аутентификация / Authentication",
+            "WebSockets",
+            "Фоновые задачи / Background Tasks",
+            "Middleware",
+            "Асинхронность / Async Support",
+            "Документация / Documentation",
+            "Тестирование / Testing"
+          ]
+        },
+        {
+          "id": "30",
+          "name": "WebSockets",
+          "name_en": "WebSockets",
+          "emoji": "🔌",
+          "subtopics": [
+            "websockets библиотека / websockets Library",
+            "Socket.IO",
+            "Сервер WebSockets / WebSocket Server",
+            "Клиент WebSockets / WebSocket Client",
+            "Асинхронные WebSockets / Async WebSockets",
+            "Комнаты и группы / Rooms and Groups"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "07",
+      "name": "Асинхронность",
+      "name_en": "Async & Concurrency",
+      "emoji": "🔄",
+      "topics": [
+        {
+          "id": "31",
+          "name": "Многопоточность",
+          "name_en": "Threading",
+          "emoji": "🧵",
+          "subtopics": [
+            "Создание потоков / Thread Creation",
+            "Запуск потоков / Starting Threads",
+            "Ожидание потоков / Waiting for Threads",
+            "Синхронизация / Synchronization",
+            "Блокировки / Locks",
+            "Семафоры / Semaphores",
+            "События / Events",
+            "Очереди / Queues",
+            "Пул потоков / Thread Pool",
+            "GIL / Global Interpreter Lock"
+          ]
+        },
+        {
+          "id": "32",
+          "name": "Многопроцессорность",
+          "name_en": "Multiprocessing",
+          "emoji": "⚙️",
+          "subtopics": [
+            "Создание процессов / Process Creation",
+            "Пул процессов / Process Pool",
+            "IPC / Inter-Process Communication",
+            "Очереди / Queues",
+            "Общая память / Shared Memory",
+            "Синхронизация / Synchronization"
+          ]
+        },
+        {
+          "id": "33",
+          "name": "Asyncio",
+          "name_en": "Asyncio",
+          "emoji": "🔄",
+          "subtopics": [
+            "async/await",
+            "Event Loop",
+            "Корутины / Coroutines",
+            "Задачи / Tasks",
+            "Future",
+            "gather и wait",
+            "Таймауты / Timeouts",
+            "Отмена задач / Task Cancellation",
+            "Async менеджеры / Async Context Managers",
+            "Async итераторы / Async Iterators",
+            "Async генераторы / Async Generators",
+            "Очереди / Queues",
+            "Блокировки / Locks",
+            "aiohttp",
+            "asyncpg"
+          ]
+        },
+        {
+          "id": "34",
+          "name": "Concurrent.futures",
+          "name_en": "Concurrent.futures",
+          "emoji": "📋",
+          "subtopics": [
+            "ThreadPoolExecutor",
+            "ProcessPoolExecutor",
+            "Future",
+            "as_completed"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "08",
+      "name": "Data Science",
+      "name_en": "Data Science",
+      "emoji": "📊",
+      "topics": [
+        {
+          "id": "35",
+          "name": "NumPy",
+          "name_en": "NumPy",
+          "emoji": "🔢",
+          "subtopics": [
+            "Массивы / Arrays",
+            "Типы данных / Data Types",
+            "Форма массива / Array Shape",
+            "Изменение формы / Reshaping",
+            "Индексация и срезы / Indexing and Slicing",
+            "Универсальные функции / Universal Functions",
+            "Операции / Operations",
+            "Broadcasting",
+            "Линейная алгебра / Linear Algebra",
+            "Случайные числа / Random Numbers",
+            "Статистика / Statistics"
+          ]
+        },
+        {
+          "id": "36",
+          "name": "Pandas",
+          "name_en": "Pandas",
+          "emoji": "🐼",
+          "subtopics": [
+            "Series",
+            "DataFrame",
+            "Чтение данных / Reading Data",
+            "Запись данных / Writing Data",
+            "Индексация / Indexing",
+            "Выборка / Selection",
+            "Фильтрация / Filtering",
+            "Сортировка / Sorting",
+            "GroupBy",
+            "Агрегация / Aggregation",
+            "Сводные таблицы / Pivot Tables",
+            "Слияние / Merging",
+            "Пропущенные данные / Missing Data",
+            "Дубликаты / Duplicates",
+            "Преобразование / Transformation",
+            "apply",
+            "Time Series",
+            "resample",
+            "Оконные функции / Window Functions",
+            "Категориальные данные / Categorical Data"
+          ]
+        },
+        {
+          "id": "37",
+          "name": "Matplotlib",
+          "name_en": "Matplotlib",
+          "emoji": "📈",
+          "subtopics": [
+            "Базовые графики / Basic Plots",
+            "Настройка / Customization",
+            "Subplots",
+            "3D графики / 3D Plots",
+            "Анимация / Animation",
+            "Сохранение / Saving"
+          ]
+        },
+        {
+          "id": "38",
+          "name": "Seaborn",
+          "name_en": "Seaborn",
+          "emoji": "🌊",
+          "subtopics": [
+            "Статистические графики / Statistical Plots",
+            "Тепловые карты / Heatmaps",
+            "Pair plots",
+            "Violin plots",
+            "Box plots",
+            "Стили / Styles"
+          ]
+        },
+        {
+          "id": "39",
+          "name": "Plotly",
+          "name_en": "Plotly",
+          "emoji": "📊",
+          "subtopics": [
+            "Интерактивные графики / Interactive Plots",
+            "Plotly Express",
+            "Dash",
+            "3D графики / 3D Plots",
+            "Анимация / Animation"
+          ]
+        },
+        {
+          "id": "40",
+          "name": "SciPy",
+          "name_en": "SciPy",
+          "emoji": "🔬",
+          "subtopics": [
+            "Оптимизация / Optimization",
+            "Интегрирование / Integration",
+            "Статистика / Statistics",
+            "Сигналы / Signal Processing",
+            "Sparse матрицы / Sparse Matrices",
+            "Линейная алгебра / Linear Algebra",
+            "Интерполяция / Interpolation"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "09",
+      "name": "Машинное обучение",
+      "name_en": "Machine Learning",
+      "emoji": "🤖",
+      "topics": [
+        {
+          "id": "41",
+          "name": "Scikit-learn",
+          "name_en": "Scikit-learn",
+          "emoji": "🤖",
+          "subtopics": [
+            "Предобработка / Preprocessing",
+            "StandardScaler",
+            "OneHotEncoder",
+            "Train-Test Split",
+            "Регрессия / Regression",
+            "Классификация / Classification",
+            "Кластеризация / Clustering",
+            "Снижение размерности / Dimensionality Reduction",
+            "Оценка моделей / Model Evaluation",
+            "Cross-validation",
+            "Grid Search",
+            "Pipeline"
+          ]
+        },
+        {
+          "id": "42",
+          "name": "Глубокое обучение",
+          "name_en": "Deep Learning",
+          "emoji": "🧠",
+          "subtopics": [
+            "Тензоры / Tensors",
+            "Autograd",
+            "Нейронные сети / Neural Networks",
+            "CNN / Convolutional Neural Networks",
+            "RNN / Recurrent Neural Networks",
+            "Transformers",
+            "Transfer Learning",
+            "Fine-tuning",
+            "DataLoaders",
+            "Сохранение моделей / Model Saving"
+          ]
+        },
+        {
+          "id": "43",
+          "name": "NLP",
+          "name_en": "Natural Language Processing",
+          "emoji": "💬",
+          "subtopics": [
+            "NLTK",
+            "Токенизация / Tokenization",
+            "Стемминг / Stemming",
+            "Лемматизация / Lemmatization",
+            "POS-тегинг / POS Tagging",
+            "NER / Named Entity Recognition",
+            "Векторизация / Vectorization",
+            "Анализ тональности / Sentiment Analysis",
+            "spaCy",
+            "Transformers",
+            "BERT",
+            "Word2Vec"
+          ]
+        },
+        {
+          "id": "44",
+          "name": "Компьютерное зрение",
+          "name_en": "Computer Vision",
+          "emoji": "👁️",
+          "subtopics": [
+            "Загрузка изображений / Image Loading",
+            "Сохранение / Saving",
+            "Преобразования / Transformations",
+            "Фильтры / Filters",
+            "Работа с видео / Video Processing",
+            "Детекция лиц / Face Detection",
+            "Детекция объектов / Object Detection",
+            "Распознавание лиц / Face Recognition",
+            "OCR / Optical Character Recognition"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "10",
+      "name": "Веб-скрапинг",
+      "name_en": "Web Scraping",
+      "emoji": "🕷️",
+      "topics": [
+        {
+          "id": "45",
+          "name": "BeautifulSoup",
+          "name_en": "BeautifulSoup",
+          "emoji": "🕷️",
+          "subtopics": [
+            "Парсинг HTML / HTML Parsing",
+            "Поиск элементов / Finding Elements",
+            "Навигация / Navigation",
+            "Извлечение данных / Data Extraction",
+            "Атрибуты / Attributes",
+            "CSS селекторы / CSS Selectors"
+          ]
+        },
+        {
+          "id": "46",
+          "name": "Scrapy",
+          "name_en": "Scrapy",
+          "emoji": "🕸️",
+          "subtopics": [
+            "Создание проекта / Project Creation",
+            "Спайдеры / Spiders",
+            "Items",
+            "Pipelines",
+            "Middleware",
+            "Хранение данных / Data Storage",
+            "Shell"
+          ]
+        },
+        {
+          "id": "47",
+          "name": "Selenium",
+          "name_en": "Selenium",
+          "emoji": "🖥️",
+          "subtopics": [
+            "Автоматизация / Automation",
+            "WebDriver",
+            "Поиск элементов / Finding Elements",
+            "Действия / Actions",
+            "Ожидания / Waits",
+            "JavaScript",
+            "Скриншоты / Screenshots",
+            "Headless",
+            "iframe",
+            "Popup"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "11",
+      "name": "Автоматизация",
+      "name_en": "Automation",
+      "emoji": "🤖",
+      "topics": [
+        {
+          "id": "48",
+          "name": "Системная автоматизация",
+          "name_en": "System Automation",
+          "emoji": "⚙️",
+          "subtopics": [
+            "os",
+            "shutil",
+            "subprocess",
+            "Файловые операции / File Operations",
+            "Архивы / Archives",
+            "Планирование / Scheduling",
+            "Мониторинг / Monitoring"
+          ]
+        },
+        {
+          "id": "49",
+          "name": "Email автоматизация",
+          "name_en": "Email Automation",
+          "emoji": "📧",
+          "subtopics": [
+            "smtplib",
+            "imaplib",
+            "poplib",
+            "Создание писем / Email Creation",
+            "Прикрепление файлов / File Attachments",
+            "Парсинг / Parsing"
+          ]
+        },
+        {
+          "id": "50",
+          "name": "Excel / Word / PDF",
+          "name_en": "Excel / Word / PDF",
+          "emoji": "📊",
+          "subtopics": [
+            "openpyxl",
+            "pandas-excel",
+            "python-docx",
+            "PyPDF2",
+            "ReportLab",
+            "xlsxwriter"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "12",
+      "name": "Тестирование",
+      "name_en": "Testing",
+      "emoji": "🧪",
+      "topics": [
+        {
+          "id": "51",
+          "name": "Unit Testing",
+          "name_en": "Unit Testing",
+          "emoji": "🧪",
+          "subtopics": [
+            "unittest",
+            "TestCase",
+            "assert методы / assert Methods",
+            "setUp-tearDown",
+            "pytest",
+            "Фикстуры / Fixtures",
+            "Параметризация / Parametrization",
+            "Маркеры / Marks",
+            "Плагины / Plugins",
+            "doctest",
+            "coverage"
+          ]
+        },
+        {
+          "id": "52",
+          "name": "Mocking",
+          "name_en": "Mocking",
+          "emoji": "🎭",
+          "subtopics": [
+            "unittest.mock",
+            "Mock",
+            "Patch",
+            "MagicMock",
+            "pytest-mock"
+          ]
+        },
+        {
+          "id": "53",
+          "name": "TDD / BDD",
+          "name_en": "TDD / BDD",
+          "emoji": "📋",
+          "subtopics": [
+            "TDD / Test-Driven Development",
+            "behave",
+            "pytest-bdd"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "13",
+      "name": "DevOps",
+      "name_en": "DevOps",
+      "emoji": "🐳",
+      "topics": [
+        {
+          "id": "54",
+          "name": "Docker",
+          "name_en": "Docker",
+          "emoji": "🐳",
+          "subtopics": [
+            "Dockerfile",
+            "Сборка образов / Building Images",
+            "Запуск контейнеров / Running Containers",
+            "docker-compose",
+            "Volumes",
+            "Networks"
+          ]
+        },
+        {
+          "id": "55",
+          "name": "CI/CD",
+          "name_en": "CI/CD",
+          "emoji": "🔄",
+          "subtopics": [
+            "GitHub Actions",
+            "GitLab CI",
+            "Jenkins",
+            "CircleCI",
+            "Travis CI"
+          ]
+        },
+        {
+          "id": "56",
+          "name": "Облачные платформы",
+          "name_en": "Cloud Platforms",
+          "emoji": "☁️",
+          "subtopics": [
+            "AWS S3",
+            "AWS EC2",
+            "AWS Lambda",
+            "GCP Storage",
+            "GCP BigQuery",
+            "Azure Blob",
+            "Azure Functions"
+          ]
+        },
+        {
+          "id": "57",
+          "name": "Мониторинг",
+          "name_en": "Monitoring",
+          "emoji": "📊",
+          "subtopics": [
+            "Prometheus",
+            "Grafana",
+            "Sentry",
+            "ELK Stack"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "14",
+      "name": "Безопасность",
+      "name_en": "Security",
+      "emoji": "🔒",
+      "topics": [
+        {
+          "id": "58",
+          "name": "Криптография",
+          "name_en": "Cryptography",
+          "emoji": "🔐",
+          "subtopics": [
+            "hashlib",
+            "hmac",
+            "cryptography",
+            "Fernet",
+            "RSA",
+            "bcrypt",
+            "argon2"
+          ]
+        },
+        {
+          "id": "59",
+          "name": "Аутентификация",
+          "name_en": "Authentication",
+          "emoji": "🛡️",
+          "subtopics": [
+            "JWT / JSON Web Tokens",
+            "OAuth2",
+            "Управление сессиями / Session Management",
+            "CSRF / Cross-Site Request Forgery",
+            "XSS / Cross-Site Scripting"
+          ]
+        },
+        {
+          "id": "60",
+          "name": "Защита от атак",
+          "name_en": "Attack Protection",
+          "emoji": "🚨",
+          "subtopics": [
+            "SQL Injection",
+            "XSS / Cross-Site Scripting",
+            "CSRF",
+            "Rate Limiting",
+            "Input Validation",
+            "Secure Headers"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "15",
+      "name": "Алгоритмы",
+      "name_en": "Algorithms",
+      "emoji": "📐",
+      "topics": [
+        {
+          "id": "61",
+          "name": "Сортировка",
+          "name_en": "Sorting",
+          "emoji": "🔀",
+          "subtopics": [
+            "Bubble Sort / Сортировка пузырьком",
+            "Selection Sort / Сортировка выбором",
+            "Insertion Sort / Сортировка вставками",
+            "Quick Sort / Быстрая сортировка",
+            "Merge Sort / Сортировка слиянием",
+            "Heap Sort / Пирамидальная сортировка",
+            "Counting Sort / Сортировка подсчетом",
+            "Radix Sort / Поразрядная сортировка",
+            "Timsort"
+          ]
+        },
+        {
+          "id": "62",
+          "name": "Поиск",
+          "name_en": "Searching",
+          "emoji": "🔍",
+          "subtopics": [
+            "Linear Search / Линейный поиск",
+            "Binary Search / Бинарный поиск",
+            "Interpolation Search / Интерполяционный поиск",
+            "Exponential Search / Экспоненциальный поиск",
+            "Jump Search / Поиск прыжками"
+          ]
+        },
+        {
+          "id": "63",
+          "name": "Графы",
+          "name_en": "Graphs",
+          "emoji": "📊",
+          "subtopics": [
+            "BFS / Breadth-First Search",
+            "DFS / Depth-First Search",
+            "Dijkstra / Алгоритм Дейкстры",
+            "Bellman-Ford",
+            "Floyd-Warshall",
+            "Kruskal",
+            "Prim",
+            "Топологическая сортировка / Topological Sorting",
+            "Компоненты связности / Connected Components"
+          ]
+        },
+        {
+          "id": "64",
+          "name": "Динамическое программирование",
+          "name_en": "Dynamic Programming",
+          "emoji": "🧮",
+          "subtopics": [
+            "Knapsack / Рюкзак",
+            "LCS / Longest Common Subsequence",
+            "Edit Distance / Редакционное расстояние",
+            "Coin Change / Размен монет",
+            "Fibonacci / Фибоначчи",
+            "Matrix Chain / Умножение матриц",
+            "Levenshtein / Левенштейн"
+          ]
+        },
+        {
+          "id": "65",
+          "name": "Структуры данных",
+          "name_en": "Data Structures",
+          "emoji": "📚",
+          "subtopics": [
+            "Linked Lists / Связные списки",
+            "Stack and Queue / Стек и очередь",
+            "Priority Queue / Приоритетная очередь",
+            "Binary Tree / Бинарное дерево",
+            "BST / Binary Search Tree",
+            "AVL Tree",
+            "Red-Black Tree",
+            "B-Tree / B-дерево",
+            "Trie",
+            "Segment Tree / Дерево отрезков",
+            "Hash Tables / Хеш-таблицы"
+          ]
+        },
+        {
+          "id": "66",
+          "name": "Рекурсия",
+          "name_en": "Recursion",
+          "emoji": "🔄",
+          "subtopics": [
+            "Factorial / Факториал",
+            "Fibonacci / Фибоначчи",
+            "Tower of Hanoi / Ханойские башни",
+            "Backtracking",
+            "N-Queens",
+            "Sudoku"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "16",
+      "name": "GUI",
+      "name_en": "GUI & Graphics",
+      "emoji": "🎨",
+      "topics": [
+        {
+          "id": "67",
+          "name": "Tkinter",
+          "name_en": "Tkinter",
+          "emoji": "🖥️",
+          "subtopics": [
+            "Основы / Basics",
+            "Виджеты / Widgets",
+            "Layouts",
+            "События / Events",
+            "Меню / Menus",
+            "Диалоги / Dialogs",
+            "Стилизация / Styling",
+            "Canvas",
+            "Таймеры / Timers"
+          ]
+        },
+        {
+          "id": "68",
+          "name": "PyQt / PySide",
+          "name_en": "PyQt / PySide",
+          "emoji": "🎨",
+          "subtopics": [
+            "Основы Qt / Qt Basics",
+            "Signals & Slots / Сигналы и слоты",
+            "Виджеты / Widgets",
+            "Компоновка / Layouts",
+            "Menus & Toolbars / Меню и панели",
+            "Dialogs / Диалоги",
+            "Model-View",
+            "Qt Designer",
+            "QSS / Qt Style Sheets"
+          ]
+        },
+        {
+          "id": "69",
+          "name": "Kivy",
+          "name_en": "Kivy",
+          "emoji": "📱",
+          "subtopics": [
+            "Основы / Basics",
+            "Виджеты / Widgets",
+            "Layouts",
+            "События / Events",
+            "KV Language / KV язык",
+            "Mobile Apps / Мобильные приложения"
+          ]
+        },
+        {
+          "id": "70",
+          "name": "Pygame",
+          "name_en": "Pygame",
+          "emoji": "🎮",
+          "subtopics": [
+            "Инициализация / Initialization",
+            "Game Window / Окно игры",
+            "Surfaces / Поверхности",
+            "Sprites / Спрайты",
+            "Collisions / Коллизии",
+            "Sound and Music / Звук и музыка",
+            "Events / События",
+            "Fonts / Шрифты",
+            "Animation / Анимация",
+            "Game Loop / Игровой цикл"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "17",
+      "name": "Разработка игр",
+      "name_en": "Game Development",
+      "emoji": "🎮",
+      "topics": [
+        {
+          "id": "71",
+          "name": "Разработка игр на Pygame",
+          "name_en": "Game Development with Pygame",
+          "emoji": "🎮",
+          "subtopics": [
+            "Sprite Creation / Создание спрайтов",
+            "Physics / Физика",
+            "Movement / Движение",
+            "Collisions / Столкновения",
+            "Game AI / Искусственный интеллект",
+            "Game UI / Интерфейс",
+            "Optimization / Оптимизация"
+          ]
+        },
+        {
+          "id": "72",
+          "name": "Arcade Library",
+          "name_en": "Arcade Library",
+          "emoji": "🕹️",
+          "subtopics": [
+            "Simple Games / Простые игры",
+            "Graphics / Графика",
+            "Sound / Звук",
+            "Physics / Физика"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "18",
+      "name": "Оптимизация",
+      "name_en": "Profiling & Optimization",
+      "emoji": "📈",
+      "topics": [
+        {
+          "id": "73",
+          "name": "Профилирование",
+          "name_en": "Profiling",
+          "emoji": "📊",
+          "subtopics": [
+            "cProfile",
+            "line_profiler",
+            "memory_profiler",
+            "py-spy"
+          ]
+        },
+        {
+          "id": "74",
+          "name": "Оптимизация кода",
+          "name_en": "Code Optimization",
+          "emoji": "⚡",
+          "subtopics": [
+            "Loop Optimization / Оптимизация циклов",
+            "Memory Optimization / Оптимизация памяти",
+            "Cython",
+            "Numba",
+            "Caching / Кеширование",
+            "Database Query Optimization"
+          ]
+        },
+        {
+          "id": "75",
+          "name": "Управление памятью",
+          "name_en": "Memory Management",
+          "emoji": "🧠",
+          "subtopics": [
+            "Garbage Collection",
+            "weakref / Weak References",
+            "Manual Memory Management",
+            "memoryview",
+            "Memory Leaks / Утечки памяти"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "19",
+      "name": "Паттерны",
+      "name_en": "Design Patterns",
+      "emoji": "🎯",
+      "topics": [
+        {
+          "id": "76",
+          "name": "Порождающие паттерны",
+          "name_en": "Creational Patterns",
+          "emoji": "🏗️",
+          "subtopics": [
+            "Singleton / Одиночка",
+            "Factory / Фабрика",
+            "Abstract Factory / Абстрактная фабрика",
+            "Builder / Строитель",
+            "Prototype / Прототип"
+          ]
+        },
+        {
+          "id": "77",
+          "name": "Структурные паттерны",
+          "name_en": "Structural Patterns",
+          "emoji": "🔧",
+          "subtopics": [
+            "Adapter / Адаптер",
+            "Bridge / Мост",
+            "Composite / Компоновщик",
+            "Decorator / Декоратор",
+            "Facade / Фасад",
+            "Flyweight / Легковес",
+            "Proxy / Заместитель"
+          ]
+        },
+        {
+          "id": "78",
+          "name": "Поведенческие паттерны",
+          "name_en": "Behavioral Patterns",
+          "emoji": "🔄",
+          "subtopics": [
+            "Chain of Responsibility",
+            "Command / Команда",
+            "Interpreter / Интерпретатор",
+            "Iterator / Итератор",
+            "Mediator / Посредник",
+            "Memento / Хранитель",
+            "Observer / Наблюдатель",
+            "State / Состояние",
+            "Strategy / Стратегия",
+            "Template Method / Шаблонный метод",
+            "Visitor / Посетитель"
+          ]
+        },
+        {
+          "id": "79",
+          "name": "Архитектурные паттерны",
+          "name_en": "Architectural Patterns",
+          "emoji": "🏛️",
+          "subtopics": [
+            "MVC / Model-View-Controller",
+            "MVP / Model-View-Presenter",
+            "MVVM / Model-View-ViewModel",
+            "Repository / Репозиторий",
+            "Dependency Injection"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "20",
+      "name": "Инструменты",
+      "name_en": "Developer Tools",
+      "emoji": "🔧",
+      "topics": [
+        {
+          "id": "80",
+          "name": "Git",
+          "name_en": "Git",
+          "emoji": "📜",
+          "subtopics": [
+            "Git Basics / Основы Git",
+            "GitHub",
+            "GitLab",
+            "Pull Requests",
+            "Issues",
+            "CI/CD"
+          ]
+        },
+        {
+          "id": "81",
+          "name": "IDE и редакторы",
+          "name_en": "IDEs & Editors",
+          "emoji": "💻",
+          "subtopics": [
+            "VS Code",
+            "PyCharm",
+            "Jupyter Notebook",
+            "Vim/Neovim",
+            "Sublime Text"
+          ]
+        },
+        {
+          "id": "82",
+          "name": "Статический анализ",
+          "name_en": "Static Analysis",
+          "emoji": "✅",
+          "subtopics": [
+            "PEP 8",
+            "flake8",
+            "pylint",
+            "black",
+            "isort",
+            "mypy",
+            "pyright",
+            "bandit",
+            "pre-commit"
+          ]
+        },
+        {
+          "id": "83",
+          "name": "Документация",
+          "name_en": "Documentation",
+          "emoji": "📝",
+          "subtopics": [
+            "Docstrings",
+            "Sphinx",
+            "MkDocs",
+            "ReadTheDocs",
+            "Markdown"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "21",
+      "name": "Распространение",
+      "name_en": "Distribution",
+      "emoji": "📦",
+      "topics": [
+        {
+          "id": "84",
+          "name": "Упаковка",
+          "name_en": "Packaging",
+          "emoji": "📦",
+          "subtopics": [
+            "setuptools",
+            "wheel",
+            "pyproject.toml",
+            "setup.py",
+            "MANIFEST.in",
+            "PyPI",
+            "TestPyPI"
+          ]
+        },
+        {
+          "id": "85",
+          "name": "Дистрибуция",
+          "name_en": "Distribution",
+          "emoji": "🚀",
+          "subtopics": [
+            "pyinstaller",
+            "cx_Freeze",
+            "Nuitka",
+            "py2exe",
+            "dmgbuild"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "22",
+      "name": "Специализации",
+      "name_en": "Specialized Areas",
+      "emoji": "🔬",
+      "topics": [
+        {
+          "id": "86",
+          "name": "Научные вычисления",
+          "name_en": "Scientific Computing",
+          "emoji": "🔬",
+          "subtopics": [
+            "SymPy",
+            "SageMath",
+            "Differentiation / Дифференцирование",
+            "Integrals / Интегралы"
+          ]
+        },
+        {
+          "id": "87",
+          "name": "Обработка аудио",
+          "name_en": "Audio Processing",
+          "emoji": "🎵",
+          "subtopics": [
+            "Pydub",
+            "Librosa",
+            "SpeechRecognition",
+            "pyttsx3",
+            "AudioSegment"
+          ]
+        },
+        {
+          "id": "88",
+          "name": "Обработка видео",
+          "name_en": "Video Processing",
+          "emoji": "🎬",
+          "subtopics": [
+            "OpenCV Video",
+            "MoviePy",
+            "FFmpeg"
+          ]
+        },
+        {
+          "id": "89",
+          "name": "Робототехника",
+          "name_en": "Robotics",
+          "emoji": "🤖",
+          "subtopics": [
+            "ROS / Robot Operating System",
+            "Raspberry Pi",
+            "Arduino",
+            "Automation / Автоматизация"
+          ]
+        },
+        {
+          "id": "90",
+          "name": "IoT",
+          "name_en": "Internet of Things",
+          "emoji": "🌐",
+          "subtopics": [
+            "MQTT",
+            "CoAP",
+            "Z-Wave / Zigbee",
+            "GPIO",
+            "Home Automation / Домашняя автоматизация"
+          ]
+        },
+        {
+          "id": "91",
+          "name": "Квантовые вычисления",
+          "name_en": "Quantum Computing",
+          "emoji": "⚛️",
+          "subtopics": [
+            "Qiskit",
+            "Cirq",
+            "PennyLane"
+          ]
+        },
+        {
+          "id": "92",
+          "name": "Блокчейн",
+          "name_en": "Blockchain",
+          "emoji": "⛓️",
+          "subtopics": [
+            "Basic Blockchain",
+            "Cryptography / Криптография",
+            "Smart Contracts",
+            "Web3",
+            "NFT / Non-Fungible Tokens"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "23",
+      "name": "Дополнительно",
+      "name_en": "Additional Topics",
+      "emoji": "📚",
+      "topics": [
+        {
+          "id": "93",
+          "name": "Регулярные выражения",
+          "name_en": "Regular Expressions",
+          "emoji": "📝",
+          "subtopics": [
+            "re Module / re-модуль",
+            "Special Characters / Специальные символы",
+            "Character Classes / Классы символов",
+            "Quantifiers / Квантификаторы",
+            "Groups / Группы",
+            "Lookahead/Lookbehind",
+            "Flags / Флаги"
+          ]
+        },
+        {
+          "id": "94",
+          "name": "Дата и время",
+          "name_en": "Date & Time",
+          "emoji": "🕐",
+          "subtopics": [
+            "datetime",
+            "date",
+            "time",
+            "timedelta",
+            "timezone",
+            "pytz",
+            "arrow",
+            "pendulum",
+            "strftime / strptime"
+          ]
+        },
+        {
+          "id": "95",
+          "name": "API разработка",
+          "name_en": "API Development",
+          "emoji": "🔌",
+          "subtopics": [
+            "REST API",
+            "GraphQL",
+            "gRPC",
+            "Webhooks",
+            "OpenAPI / Swagger"
+          ]
+        },
+        {
+          "id": "96",
+          "name": "Микросервисы",
+          "name_en": "Microservices",
+          "emoji": "🏗️",
+          "subtopics": [
+            "Service Discovery",
+            "API Gateway",
+            "RabbitMQ",
+            "Kafka / Apache Kafka",
+            "Circuit Breaker",
+            "Distributed Tracing",
+            "Event Sourcing"
+          ]
+        },
+        {
+          "id": "97",
+          "name": "Data Engineering",
+          "name_en": "Data Engineering",
+          "emoji": "📊",
+          "subtopics": [
+            "ETL / Extract, Transform, Load",
+            "Airflow / Apache Airflow",
+            "Spark / Apache Spark",
+            "Dask",
+            "Data Warehousing"
+          ]
+        },
+        {
+          "id": "98",
+          "name": "Математика",
+          "name_en": "Mathematics",
+          "emoji": "➗",
+          "subtopics": [
+            "math",
+            "random",
+            "statistics",
+            "Linear Algebra / Линейная алгебра",
+            "Vectors and Matrices"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "24",
+      "name": "Карьера",
+      "name_en": "Career",
+      "emoji": "💼",
+      "topics": [
+        {
+          "id": "99",
+          "name": "Собеседования",
+          "name_en": "Interviews",
+          "emoji": "💼",
+          "subtopics": [
+            "Algorithmic Problems / Алгоритмические задачи",
+            "System Design / Системный дизайн",
+            "Python Questions / Python вопросы",
+            "Behavioral Questions / Поведенческие вопросы",
+            "Live Coding"
+          ]
+        },
+        {
+          "id": "100",
+          "name": "Карьерный рост",
+          "name_en": "Career Growth",
+          "emoji": "🚀",
+          "subtopics": [
+            "Portfolio / Портфолио",
+            "Open Source",
+            "Certifications / Сертификации",
+            "Resume / Резюме",
+            "Freelancing / Фриланс",
+            "Community / Сообщество"
+          ]
+        }
+      ]
+    }
+  ]
+}
