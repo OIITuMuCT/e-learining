@@ -1,3 +1,4 @@
+from braces.views import CsrfExemptMixin, JsonRequestResponseMixin
 from django.shortcuts import get_object_or_404, redirect
 from django.contrib.auth.mixins import (
     LoginRequiredMixin, PermissionRequiredMixin
@@ -34,6 +35,9 @@ class OwnerCourseMixin(OwnerMixin, LoginRequiredMixin, PermissionRequiredMixin):
 class OwnerCourseEditMixin(OwnerCourseMixin, OwnerEditMixin):
     template_name = 'courses/manage/course/form.html'
 
+# ========================================================================================
+# Courses
+# ========================================================================================
 
 class ManageCourseListView(OwnerCourseMixin, ListView):
     """Выводит список созданных пользователем крусов."""
@@ -60,6 +64,11 @@ class CourseDeleteView(OwnerCourseMixin, DeleteView):
     """Позволяет удалять Курс, через шаблон подтверждения удаления"""
     template_name = 'courses/manage/course/delete.html'
     permission_required = 'courses.delete_course'
+
+
+# ========================================================================================
+# Course Modules
+# ========================================================================================
 
 class CourseModuleUpdateView(TemplateResponseMixin, View):
     """CRUD
@@ -110,6 +119,10 @@ class CourseModuleUpdateView(TemplateResponseMixin, View):
         return self.render_to_response(
             {'course': self.course, 'formset': formset}
         )
+
+# ========================================================================================
+# Content
+# ========================================================================================
 
 class ContentCreateUpdateView(TemplateResponseMixin, View):
     """Модель позволяет создавать и обновлять содержимое разных моделей."""
@@ -184,6 +197,10 @@ class ContentDeleteView(View):
         content.delete()
         return redirect('module_content_list', module.id)
 
+# ========================================================================================
+# Module Content
+# ========================================================================================
+
 class ModuleContentListView(TemplateResponseMixin, View):
     template_name = 'courses/manage/module/content_list.html'
 
@@ -192,3 +209,19 @@ class ModuleContentListView(TemplateResponseMixin, View):
             Module, id=module_id, course__owner=request.user
         )
         return self.render_to_response({'module': module})
+
+class ModuleOrderView(CsrfExemptMixin, JsonRequestResponseMixin, View):
+    def post(self, request):
+        for id, order in self.request._json.items():
+            Module.objects.filter(
+                id=id, course__owner=request.user
+            ).update(order=order)
+        return self.render_json_response({'saved': 'OK'})
+
+class ContentOrderView(CsrfExemptMixin, JsonRequestResponseMixin, View):
+    def post(self, request):
+        for id, order in self.request_json.items():
+            Content.objects.filter(
+                id=id, module__course__owner=request.user
+            ).update(order=order)
+        return self.render_json_response({'saved': 'OK'})
