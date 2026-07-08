@@ -16,7 +16,6 @@ from .models import Content, Course, Module, Subject
 from .forms import ModuleFormSet
 
 
-
 class OwnerMixin:
     def get_queryset(self):
         qs = super().get_queryset()
@@ -34,8 +33,10 @@ class OwnerCourseMixin(OwnerMixin, LoginRequiredMixin, PermissionRequiredMixin):
     fields = ['subject', 'title', 'slug', 'overview']
     success_url = reverse_lazy("manage_course_list")
 
+
 class OwnerCourseEditMixin(OwnerCourseMixin, OwnerEditMixin):
     template_name = 'courses/manage/course/form.html'
+
 
 # ========================================================================================
 # Courses
@@ -104,12 +105,14 @@ class CourseModuleUpdateView(TemplateResponseMixin, View):
             Course, id=pk, owner=request.user
         )
         return super().dispatch(request, pk)
+
     def get(self, request, *args, **kwargs):
         formset = self.get_formset()
         return self.render_to_response(
             {'course': self.course, 'formset': formset}
         )
-    def post(self , request, *args, **kwargs):
+
+    def post(self, request, *args, **kwargs):
         """Метод выполняется для POST запросов.
 
         """
@@ -121,6 +124,7 @@ class CourseModuleUpdateView(TemplateResponseMixin, View):
         return self.render_to_response(
             {'course': self.course, 'formset': formset}
         )
+
 
 # ========================================================================================
 # Content
@@ -169,6 +173,7 @@ class ContentCreateUpdateView(TemplateResponseMixin, View):
         return self.render_to_response(
             {'form': form, 'object': self.obj}
         )
+
     def post(self, request, module_id, model_name, id=None):
         """Выполняется при получении запроса методом POST.
 
@@ -189,12 +194,14 @@ class ContentCreateUpdateView(TemplateResponseMixin, View):
             return redirect('module_content_list', self.module.id)
         return self.render_to_response({'form': form, 'object': self.obj})
 
+
 class ContentDeleteView(View):
     """Класс ContentDeleteView извлекает объект контента с заданным идентификатором.
 
     Он удаляет связанные Объект «Текст», «Видео», «Изображение» или «Файл». Наконец,
     он удаляет объект контента и перенаправляет пользователя на Module_content_list URL-адрес
     для отображения другого содержимого модуля."""
+
     def post(self, request, id):
         content = get_object_or_404(
             Content, id=id, module__course__owner=request.user
@@ -203,6 +210,7 @@ class ContentDeleteView(View):
         content.item.delete()
         content.delete()
         return redirect('module_content_list', module.id)
+
 
 # ========================================================================================
 # Module Content
@@ -222,6 +230,7 @@ class ModuleContentListView(TemplateResponseMixin, View):
         )
         return self.render_to_response({'module': module})
 
+
 class ModuleOrderView(CsrfExemptMixin, JsonRequestResponseMixin, View):
     """Это представление ModuleOrderView, которое позволяет обновлять порядок модулей курса.
 
@@ -238,8 +247,10 @@ class ModuleOrderView(CsrfExemptMixin, JsonRequestResponseMixin, View):
             ).update(order=order)
         return self.render_json_response({'saved': 'OK'})
 
+
 class ContentOrderView(CsrfExemptMixin, JsonRequestResponseMixin, View):
     """Это представление ContentOrderView, которое позволяет обновить порядок контента в модуле."""
+
     def post(self, request):
         for id, order in self.request_json.items():
             Content.objects.filter(
@@ -247,10 +258,12 @@ class ContentOrderView(CsrfExemptMixin, JsonRequestResponseMixin, View):
             ).update(order=order)
         return self.render_json_response({'saved': 'OK'})
 
+
 class CourseListView(TemplateResponseMixin, View):
     """List all available courses, optionally filtered by subject."""
     model = Course
     template_name = 'courses/course/list.html'
+
     def get(self, request, subject=None):
         subjects = Subject.objects.annotate(
             total_courses=Count('courses')
@@ -268,6 +281,8 @@ class CourseListView(TemplateResponseMixin, View):
                 'courses': courses
             }
         )
+
+
 class CourseDetailView(DetailView):
     """Display a single course overview."""
     model = Course
