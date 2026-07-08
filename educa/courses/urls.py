@@ -21,4 +21,8 @@ urlpatterns = [
     path('module/<int:module_id>/', views.ModuleContentListView.as_view(), name='module_content_list'),
     path('module/order/', views.ModuleOrderView.as_view(), name='module_order'),
     path('content/order/', views.ContentOrderView.as_view(), name='content_order'),
+    # For displaying all courses for a subject
+    path('subject/<slug:subject>/', views.CourseListView.as_view(), name='course_list_subject'),
+    # For displaying a single course overview
+    path('<slug:slug>/', views.CourseDetailView.as_views(), name='course_detail')
 ]

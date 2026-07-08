@@ -1,16 +1,18 @@
+from django.db.models import Count
 from braces.views import CsrfExemptMixin, JsonRequestResponseMixin
 from django.shortcuts import get_object_or_404, redirect
 from django.contrib.auth.mixins import (
     LoginRequiredMixin, PermissionRequiredMixin
 )
 from django.urls import reverse_lazy
+from django.views.generic import DetailView
 from django.views.generic.base import TemplateResponseMixin, View
 from django.views.generic.edit import CreateView, DeleteView, UpdateView
 from django.views.generic.list import ListView
 from django.forms.models import modelform_factory
 from django.apps import apps
 
-from .models import Content, Course, Module
+from .models import Content, Course, Module, Subject
 from .forms import ModuleFormSet
 
 
@@ -188,6 +190,11 @@ class ContentCreateUpdateView(TemplateResponseMixin, View):
         return self.render_to_response({'form': form, 'object': self.obj})
 
 class ContentDeleteView(View):
+    """Класс ContentDeleteView извлекает объект контента с заданным идентификатором.
+
+    Он удаляет связанные Объект «Текст», «Видео», «Изображение» или «Файл». Наконец,
+    он удаляет объект контента и перенаправляет пользователя на Module_content_list URL-адрес
+    для отображения другого содержимого модуля."""
     def post(self, request, id):
         content = get_object_or_404(
             Content, id=id, module__course__owner=request.user
@@ -202,6 +209,11 @@ class ContentDeleteView(View):
 # ========================================================================================
 
 class ModuleContentListView(TemplateResponseMixin, View):
+    """Это представление ModuleContentListView.
+
+    Это представление получает объект модуля с заданным идентификатором,
+    принадлежащий текущему пользователю, и отображает шаблон
+    с данным модулем."""
     template_name = 'courses/manage/module/content_list.html'
 
     def get(self, request, module_id):
@@ -211,6 +223,14 @@ class ModuleContentListView(TemplateResponseMixin, View):
         return self.render_to_response({'module': module})
 
 class ModuleOrderView(CsrfExemptMixin, JsonRequestResponseMixin, View):
+    """Это представление ModuleOrderView, которое позволяет обновлять порядок модулей курса.
+
+    CsrfExemptMixin: Используется, чтобы избежать проверки токена подделки межсайтового запроса (CSRF)
+    в POST-запросы. Это необходимо для выполнения запросов AJAX POST без необходимости передачи csrf_token.
+    JsonRequestResponseMixin: Используется, чтобы избежать проверки. Анализирует данные запроса как JSON,
+    а также сериализует ответ как JSON и возвращает ответ HTTP с типом контента application/json.
+    """
+
     def post(self, request):
         for id, order in self.request._json.items():
             Module.objects.filter(
@@ -219,9 +239,36 @@ class ModuleOrderView(CsrfExemptMixin, JsonRequestResponseMixin, View):
         return self.render_json_response({'saved': 'OK'})
 
 class ContentOrderView(CsrfExemptMixin, JsonRequestResponseMixin, View):
+    """Это представление ContentOrderView, которое позволяет обновить порядок контента в модуле."""
     def post(self, request):
         for id, order in self.request_json.items():
             Content.objects.filter(
                 id=id, module__course__owner=request.user
             ).update(order=order)
         return self.render_json_response({'saved': 'OK'})
+
+class CourseListView(TemplateResponseMixin, View):
+    """List all available courses, optionally filtered by subject."""
+    model = Course
+    template_name = 'courses/course/list.html'
+    def get(self, request, subject=None):
+        subjects = Subject.objects.annotate(
+            total_courses=Count('courses')
+        )
+        courses = Course.objects.annotate(
+            total_modules=Count('modules')
+        )
+        if subject:
+            subject = get_object_or_404(Subject, slug=subject)
+            courses = courses.filter(subject=subject)
+        return self.render_to_response(
+            {
+                'subjects': subjects,
+                'subject': subject,
+                'courses': courses
+            }
+        )
+class CourseDetailView(DetailView):
+    """Display a single course overview."""
+    model = Course
+    template_name = 'courses/course/detail.html'
