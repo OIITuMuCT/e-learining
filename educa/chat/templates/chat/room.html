@@ -4,12 +4,21 @@
 
 {% block content %}
 <div id="chat">
+    {% for message in latest_messages %}
+        <div class="message {% if message.user == request.user %}me {% else %}other{% endif %}">
+            <strong>{{ message.user.username }}</strong>
+            <span class="date">
+                {{ message.send_on|date:"Y.m.d H:i A"}}
+            </span>
+            <br>
+            {{ message.content}}
+        </div>
+    {% endfor %}
 </div>
 <div id="chat-input">
     <input type="text" id="chat-message-input">
     <input type="submit" id="chat-message-submit" value="Send">
 </div>
-
 {% endblock %}
 
 {% block include_js %}
