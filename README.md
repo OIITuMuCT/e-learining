@@ -21,10 +21,26 @@ source venv/bin/activate
 python -m pip install Django~=5.0.4
 python -m pip install Pillow==10.3.0
 ```
+
+> Install redis
+
+```python
+python -m pip install redis==5.0.4
+python -m pip install django-redisboard==8.4.0
+```
+
+> Installing Django REST framework
+```python
+    python -m pip install djangorestframework==3.15.1
+```
+
+
+
 > Create a new project using the following command:
 ```bash
 django-admin startproject educa
 ```
+
 ```bash
 cd educa
 django-admin startapp courses
@@ -35,6 +51,8 @@ django-admin startapp courses
 INSTALLED_APPS = [
     # ...
     'courses.apps.CoursesConfig',
+    'redisboard',
+    'rest_framework',
 ]
 ```
 
@@ -45,6 +63,7 @@ INSTALLED_APPS = [
 # media files
 MEDIA_URL = 'media/'
 MEDIA_ROOT = BASE_DIR / 'media'
+LOGIN_REDIRECT_URL = reverse_lazy('student_course_list')
 
 ```
 
@@ -53,6 +72,18 @@ MEDIA_ROOT = BASE_DIR / 'media'
 ```bash
 python manage.py makemigrations [courses]
 python manage.py migrate
+python manage.py migrate redisboard
+```
+### 2.4. Запуск
+```bash
+docker run -it --rm --name redis -p 6379:6379 redis:7.2.4
+python manage.py runserver --settings=educa.settings.local
+```
+> Чтобы каждый раз не передавать параметр --settings
+```bash
+export DJANGO_SETTINGS_MODULE=educa.settings.local
+
+set DJANGO_SETTINGS_MODULE=educa.sttings.local
 ```
 
 ## 3. Модели данных (Database Models)
@@ -85,6 +116,15 @@ python manage.py migrate
 ## 5. API / Представления (Views & Endpoints)
 Описание того, как приложение взаимодействует с пользователем или фронтендом. 
 
+> Creating custom permissions
+
+```python
+from rest_framework.permissions import BasePerimission
+
+class IsEnrolled(BasePerimission):
+    def has_object_permission(self, request, view, obj):
+        return obj.students.filter(id=request.user.id).exists()
+```
 ### API Endpoints:
 * **GET** `/[app_name]/api/v1/items/` 
   * *Описание:* Получение списка объектов.
@@ -97,6 +137,29 @@ python manage.py migrate
     }
   ]
   ```
+> courses
+* **GET** `/api/subject/`
+* **GET** `/api/subject/<pk>/`
+  * *Описание:* Получение списка предметов(SubjectViewSet)
+  *  *Ответ ():* `код ответа`
+
+* **GET** `/api/courses/`
+* **GET** `/api/courses/<pk>/`
+  * *Описание:* Получение списка курсов(CourseViewSet)
+  *  *Ответ ():* `код ответа`
+
+> action
+* enroll
+* **POST** `/courses/<pk>/enroll/`(IsAuthenticated)
+  * *Описание:* Зачисление студента на курс
+  * *Ответ ():* `код ответа`
+> action
+* contents
+* **GET** `'courses/<pk>/contents`
+  *  *Описание:* Показ содержания курса(IsAuthenticated, IsEnrolled)
+  *  *Ответ ():* `код ответа`
+
+
 
 ## 6. Фоновые задачи / Сигналы
 Описание кастомных команд, Celery-задач или сигналов Django (`signals.py`), которые срабатывают при определенных условиях.
