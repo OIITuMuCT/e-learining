@@ -86,6 +86,24 @@ export DJANGO_SETTINGS_MODULE=educa.settings.local
 set DJANGO_SETTINGS_MODULE=educa.sttings.local
 ```
 
+> !!! Error response from daemon: failed to create task for 
+> container: failed to create shim task: OCI runtime 
+> create failed: runc create failed: unable to start container 
+> process: error during container init: 
+> exec: "./wait-for-it.sh": permission denied: unknown
+> Solution:
+```bash
+chmod +x ./wait-for-it.sh
+# or Open Dockerfile and add this line before your ENTRYPOINT or CMD directive:
+RUN chmod +x ./wait-for-it.sh
+```
+### 2.4.1. Миграции в Docker контейнере:
+```bash
+docker compose up
+docker compose exec web python /code/educa/manage.py migrate
+docker compose exec web pyhton /code/educa/manage.py createsuperuser
+```
+
 ## 3. Модели данных (Database Models)
 Краткое описание моделей и связей. 
 * **`ModelName`**: Описание сущности (например, `Product`).
