@@ -1,4 +1,6 @@
 from decouple import config
+from django.conf.global_settings import CSRF_COOKIE_SECURE, SESSION_COOKIE_SECURE, SECURE_SSL_REDIRECT
+
 from .base import *
 
 DEBUG = False
@@ -7,7 +9,7 @@ ADMINS = [
     ('Jack Sporrow', 'jack@example.com'),
 ]
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['.educaproject.com', 'localhost:8000']
 
 DATABASES = {
     'default': {
@@ -19,6 +21,12 @@ DATABASES = {
         'PORT': 5432,
     }
 }
+
 REDIS_URL = 'redis://cache:6379'
 CACHES['default']['LOCATION'] = REDIS_URL
 CHANNEL_LAYERS['default']['CONFIG']['hosts'] = [REDIS_URL]
+
+# Security
+CSRF_COOKIE_SECURE = True
+SESSION_COOKIE_SECURE = True
+SECURE_SSL_REDIRECT = True

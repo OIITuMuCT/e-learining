@@ -13,7 +13,7 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 from pathlib import Path
 
 from django.conf.global_settings import INTERNAL_IPS, CACHE_MIDDLEWARE_ALIAS, CACHE_MIDDLEWARE_SECONDS, \
-    CACHE_MIDDLEWARE_KEY_PREFIX
+    CACHE_MIDDLEWARE_KEY_PREFIX, EMAIL_BACKEND
 from django.urls import reverse_lazy
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent.parent
@@ -133,6 +133,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
 STATIC_URL = "static/"
+STATIC_ROOT = BASE_DIR / 'static'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
@@ -183,3 +184,4 @@ CHANNEL_LAYERS = {
         },
     },
 }
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
