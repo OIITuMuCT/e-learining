@@ -10,7 +10,7 @@ upstream daphne {
 
 server {
     listen       80;
-    server_name *.educaproject.com educaproject.com;
+    server_name *.educaproject.com educaproject.com 159.194.242.70;
     return 301 https://$host$request_uri;
 }
 
@@ -18,7 +18,7 @@ server {
     listen       443 ssl;
     ssl_certificate      /code/educa/ssl/educa.crt;
     ssl_certificate_key  /code/educa/ssl/educa.key;
-    server_name  *.educaproject.com educaproject.com;
+    server_name  *.educaproject.com educaproject.com 159.194.242.70;
     error_log    stderr warn;
     access_log   /dev/stdout main;
 
