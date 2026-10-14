@@ -1,5 +1,3 @@
-from educa.educa.settings import MEDIA_URL
-
 # Документация приложения: [Educa]
 
 ## 1. Обзор (Overview)
@@ -34,8 +32,6 @@ python -m pip install django-redisboard==8.4.0
     python -m pip install djangorestframework==3.15.1
 ```
 
-
-
 > Create a new project using the following command:
 ```bash
 django-admin startproject educa
@@ -45,6 +41,8 @@ django-admin startproject educa
 cd educa
 django-admin startapp courses
 ```
+
+
 ### 2.1. Добавление в INSTALLED_APPS
 Добавьте приложение в список `INSTALLED_APPS` в файле настроек `settings.py`:
 ```python
@@ -102,6 +100,19 @@ RUN chmod +x ./wait-for-it.sh
 docker compose up
 docker compose exec web python /code/educa/manage.py migrate
 docker compose exec web pyhton /code/educa/manage.py createsuperuser
+```
+
+### 2.4.2. Работа с Docker контейнером:
+```bash
+# 1. Пересобрать и пересоздать контейнеры
+docker compose up -d --build
+
+# 2. Убедиться что все работает
+docker compose ps
+docker compose logs web
+
+# 3. Убрать висячие образы (безопасно)
+docker image prune -f
 ```
 
 ## 3. Модели данных (Database Models)
@@ -191,3 +202,4 @@ class IsEnrolled(BasePerimission):
 
 ## 9. Известные проблемы / TODO
 Список текущих ограничений или задач, запланированных к реализации в следующих версиях.
+
