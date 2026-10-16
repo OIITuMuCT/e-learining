@@ -29,8 +29,14 @@ class ChatConsumer(AsyncWebsocketConsumer):
         )
 
     async def receive(self, text_data=None):
-        text_data_json = json.loads(text_data)
-        message = text_data_json['message']
+        try:
+            text_data_json = json.loads(text_data)
+        except json.JSONDecodeError:
+            return # igrore empty/invalid messages
+
+        message = text_data_json.get("message", "").strip()
+        if not message:
+            return # empty message - do not send
         now = timezone.now()
 
         # send message to room group

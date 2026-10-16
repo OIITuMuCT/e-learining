@@ -9,7 +9,8 @@ ADMINS = [
     ('Jack Sporrow', 'jack@example.com'),
 ]
 
-ALLOWED_HOSTS = ['.educaproject.com', 'localhost:8000']
+# ALLOWED_HOSTS = ['.educaproject.com', 'localhost:8000']
+ALLOWED_HOSTS = os.getenv("ALLOWED_HOSTS", "localhost,127.0.0.1").split(",")
 
 DATABASES = {
     'default': {

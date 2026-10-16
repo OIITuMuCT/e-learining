@@ -4,10 +4,9 @@ services:
     restart: always
     volumes:
       - ./data/db:/var/lib/postgresql/data
-    environment:
-      - POSTGRES_DB=postgres
-      - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=postgres
+    env_file:
+      - .env
+
   cache:
     image: redis:7.2.4
     restart: always
@@ -21,13 +20,12 @@ services:
     restart: always
     volumes:
       - .:/code
+      - static_files:/code/staticfiles
+      - media_files:/code/media
     ports:
       - "8080:8080"
-    environment:
-      - DJANGO_SETTINGS_MODULE=educa.settings.prod
-      - POSTGRES_DB=postgres
-      - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=postgres
+    env_file:
+      - .env
     depends_on:
       - db
       - cache
@@ -37,11 +35,18 @@ services:
     restart: always
     volumes:
       - ./config/nginx:/etc/nginx/templates
-      - .:/code
+      - ./educa/ssl:/etc/nginx/ssl:ro
+      - /etc/letsencrypt:/etc/letsencrypt:ro
+      - ./certbot/www:/var/www/certbot
+      - .:/code:ro
+      - static_files:/code/staticfiles:ro
+      - media_files:/code/media:ro
     ports:
       - "80:80"
       - "443:443"
-
+    depends_on:
+      - web
+      - daphne
   daphne:
     build: .
     working_dir: /code/educa/
@@ -51,11 +56,12 @@ services:
     restart: always
     volumes:
       - .:/code
-    environment:
-      - DJANGO_SETTINGS_MODULE=educa.settings.prod
-      - POSTGRES_DB=postgres
-      - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=postgres
+    env_file:
+      - .env
     depends_on:
       - db
       - cache
+
+volumes:
+  static_files:
+  media_files:
