@@ -203,3 +203,137 @@ class IsEnrolled(BasePerimission):
 ## 9. Известные проблемы / TODO
 Список текущих ограничений или задач, запланированных к реализации в следующих версиях.
 
+### TODO:
+
+---
+
+- [] Добавить имя пользователя в Navbar
+- [] Добавить кнопку регистрации
+- [] Добавить кнопку для создания курса(для инструкторов)
+- [] Добавить отображение текстового контента в markdown
+- [] Подтверждение учетной записи по email
+- [x] Безопасность: скрыть важные данные из репозитория git
+
+---
+
+> Смена пароля для базы данных из контейнера  
+```bash
+docker compose exec db psql -U postgres -d postgres
+```
+
+```sql
+ALTER USER postgres WITH PASSWORD 'new_password';
+```
+> Обновите переменную .env
+
+```bash
+docker compose up -d --force-recreate web daphne
+```
+
+```commandline
+# 1. Все ли контейнеры запущены
+docker compose ps
+
+# 2. Логи проблемного сервиса
+docker compose logs --tail=30 nginx
+docker compose logs --tail=30 web
+docker compose logs --tail=30 daphne
+
+# 3. Проверка ответа
+curl -Ik https://159.194.242.70
+
+# 4. Если Django — проверить настройки из правильной директории
+docker compose exec -w /code/educa web python -c "
+import os
+os.environ['DJANGO_SETTINGS_MODULE'] = 'educa.settings.prod'
+import django
+django.setup()
+from django.conf import settings
+print('ALLOWED_HOSTS:', settings.ALLOWED_HOSTS)
+"
+```
+# Static and media
+
+---
+
+```
+docker compose exec -w /code/educa web python manage.py collectstatic --noinput
+
+# Ожидаемый вывод:
+0 static files copied to '/code/educa/static', 172 unmodified.
+
+```
+> Проверка статики
+```commandline
+docker compose exec nginx ls /code/educa/static/ | head
+```
+```commandline
+>>>
+admin
+css
+debug_toolbar
+redisboard
+rest_framework
+
+```
+> Проверка отдачи статики через NGINX:
+```commandline
+curl -I https://vataman.ru/static/admin/css/base.css
+
+# Response
+HTTP/1.1 200 OK
+Server: nginx/1.25.5
+Date: Wed, 14 Oct 2026 16:28:47 GMT
+Content-Type: text/css
+Content-Length: 22120
+Last-Modified: Wed, 14 Oct 2026 10:25:58 GMT
+Connection: keep-alive
+ETag: "6acf58b6-5668"
+Accept-Ranges: bytes
+
+```
+### Collectstatic
+```commandline
+docker compose exec -w /code/educa web python manage.py collectstatic --noinput
+```
+> Проверка что файлы появились
+```commandline
+docker compose exec nginx ls /code/educa/static/ | head
+docker compose exec nginx ls /code/educa/static/admin/css/ | head
+```
+> Проверка отдачи через Nginx:
+```commandline
+curl -I https://vataman.ru/static/admin/css/base.css
+```
+### Проверка /media/
+```commandline
+curl -I https://vataman.ru/media/
+```
+# Проверить что Nginx видит `media`
+```commandline
+docker compose exec nginx ls -la /code/educa/media/
+```
+
+### Права доступа
+
+---
+```commandline
+chown -R 33:33 /root/elearining/educa/media
+chmod 755 /root/elearining/educa/media
+
+# чтобы хост-пользователь, и контейнер могли писать:
+chmod 777 /root/elearining/educa/media
+# Но 777 - не безопасно. Лучше chown на UID 33 
+
+
+```
+> Следующий шаг
+```commandline
+mkdir -p /root/elearining/educa/media
+chown -R 33:33 /root/elearining/educa/media
+docker compose exec nginx ls -la /code/educa/ | grep media
+
+# ответ
+drwxr-xr-x  2 www-data www-data 4096 Oct 14 16:45 media
+
+```
