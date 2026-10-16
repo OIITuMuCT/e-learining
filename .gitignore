@@ -209,7 +209,7 @@ educa/ssl/
 *.pem
 
 # Cerbot (ACME)
-cerbot/
+certbot/
 
 # data
 media/
