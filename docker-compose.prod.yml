@@ -4,6 +4,9 @@ services:
     volumes:
       - static_files:/code/staticfiles
       - media_files:/code/media
+     # Меняем запуск uWSGI с сокета на HTTP-порт 8080:
+    command: [ "./wait-for-it.sh", "db:5432", "--",
+               "uwsgi", "--http", "0.0.0.0:8080", "--ini", "/code/config/uwsgi/uwsgi.ini" ]
 
   nginx:
     image: nginx:1.25.5
@@ -15,9 +18,14 @@ services:
       - ./certbot/www:/var/www/certbot
       - static_files:/code/staticfiles:ro
       - media_files:/code/media:ro
+      - uwsgi_socket:/code/educa:ro
     ports:
       - "80:80"
       - "443:443"
     depends_on:
       - web
       - daphne
+
+volumes:
+  static_files:
+  media_files:

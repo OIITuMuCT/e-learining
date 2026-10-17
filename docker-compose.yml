@@ -47,3 +47,4 @@ services:
 volumes:
   static_files:
   media_files:
+  uwsgi_socket:
