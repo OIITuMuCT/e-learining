@@ -1,0 +1,38 @@
+services:
+  web:
+    # Пробрасываем порт Django напрямую на ПК, чтобы открывать http://localhost:8080
+    ports:
+      - "8080:8080"
+    # Монтируем код, чтобы любые изменения в файлах на ПК сразу обновляли сайт без пересборки
+    volumes:
+      - .:/code
+      - static_files:/code/staticfiles
+      - media_files:/code/media
+    environment:
+      - DJANGO_SETTINGS_MODULE=educa.settings.local
+
+  daphne:
+    # То же самое для асинхронного сервиса
+    volumes:
+      - .:/code
+    environment:
+      - DJANGO_SETTINGS_MODULE=educa.settings.local
+
+  nginx:
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./config/nginx:/etc/nginx/templates
+      - ./educa/ssl:/etc/letsencrypt/live/vataman.ru:ro
+#      - ./educa/ssl:/etc/nginx/ssl:ro
+#      - /etc/letsencrypt:/etc/letsencrypt:ro
+      - ./certbot/www:/var/www/certbot
+      - .:/code:ro
+      - static_files:/code/staticfiles:ro
+      - media_files:/code/media:ro
+
+  db:
+    # Опционально: открываем порт базы наружу, чтобы подключаться с ПК через DBeaver / DataGrip
+    ports:
+      - "5432:5432"

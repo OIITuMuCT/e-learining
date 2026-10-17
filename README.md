@@ -95,6 +95,13 @@ chmod +x ./wait-for-it.sh
 # or Open Dockerfile and add this line before your ENTRYPOINT or CMD directive:
 RUN chmod +x ./wait-for-it.sh
 ```
+### 2.4.0
+> Для запуска на сервере docker-compose.prod.yml
+```bash
+docker compose -f docker-compose.yml -f docker-compose.prod.yml up -d --build
+
+```
+
 ### 2.4.1. Миграции в Docker контейнере:
 ```bash
 docker compose up

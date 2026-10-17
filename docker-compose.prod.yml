@@ -1,0 +1,23 @@
+services:
+  web:
+    # На сервере код вшит внутрь образа, volumes для разработки удалены
+    volumes:
+      - static_files:/code/staticfiles
+      - media_files:/code/media
+
+  nginx:
+    image: nginx:1.25.5
+    restart: always
+    volumes:
+      - ./config/nginx:/etc/nginx/templates
+      - ./educa/ssl:/etc/nginx/ssl:ro
+      - /etc/letsencrypt:/etc/letsencrypt:ro
+      - ./certbot/www:/var/www/certbot
+      - static_files:/code/staticfiles:ro
+      - media_files:/code/media:ro
+    ports:
+      - "80:80"
+      - "443:443"
+    depends_on:
+      - web
+      - daphne
