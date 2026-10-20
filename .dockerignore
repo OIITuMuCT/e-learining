@@ -1,0 +1,42 @@
+# Данные и БД
+data/
+media/
+staticfiles/
+static/
+*.sql
+*.sqlite3
+*.dump
+
+# Git
+.git/
+.gitignore
+
+# Python
+__pycache__/
+*.py[cod]
+venv/
+.venv/
+*.egg-info/
+
+# Docker
+docker-compose*.yml
+Dockerfile
+.dockerignore
+
+# Сертификаты и секреты
+educa/ssl/
+certbot/
+.env
+*.crt
+*.key
+*.pem
+
+# IDE и OS
+.idea/
+.vscode/
+.DS_Store
+
+# Логи и бэкапы
+*.log
+*.tar.gz
+backup_*
