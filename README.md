@@ -23,3 +23,4 @@ docker compose -f docker-compose.yml -f docker-compose.prod.yml up -d --build
 - [Настройки](docs/04-configuration.md)
 - [Разработка](docs/05-development.md)
 - [Решение проблем](docs/06-troubleshooting.md)
+- [TODO](docs/08-TODO.md)
