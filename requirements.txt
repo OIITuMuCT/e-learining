@@ -18,3 +18,5 @@ python-decouple==3.8
 setuptools==80.9.0
 dotenv==0.9.9
 Markdown==3.11.1
+bleach==6.4.0
+Pygments==2.21.0
