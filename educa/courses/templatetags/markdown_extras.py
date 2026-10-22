@@ -13,6 +13,9 @@ def convert_markdown(value):
         "markdown.extensions.fenced_code",  # Поддержка блоков ```bash
         "markdown.extensions.tables",       # Поддержка таблиц
         "markdown.extensions.codehilite",   # Подсветка синтаксиса
+        "markdown_checklist.extension",     # Добавил чекбоксы
+        "markdown.extensions.admonition",   # Для синтаксиса !!! note
+        "gfm_admonition",                # Для синтаксиса [!NOTE]
     ]
 
     extensions_configs = {
