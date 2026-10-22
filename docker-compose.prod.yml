@@ -4,9 +4,12 @@ services:
     volumes:
       - static_files:/code/staticfiles
       - media_files:/code/media
-     # Меняем запуск uWSGI с сокета на HTTP-порт 8080:
+    # Меняем запуск uWSGI с сокета на HTTP-порт 8080:
     command: [ "./wait-for-it.sh", "db:5432", "--",
-               "uwsgi", "--http", "0.0.0.0:8080", "--ini", "/code/config/uwsgi/uwsgi.ini" ]
+               "uwsgi", "--socket", "0.0.0.0:8080",
+               "--ini", "/code/config/uwsgi/uwsgi.ini",
+               "--enable-threads", "--processes", "4",
+               "--threads", "2" ]
 
   nginx:
     image: nginx:1.25.5
