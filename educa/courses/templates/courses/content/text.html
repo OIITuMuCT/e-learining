@@ -1,3 +1,5 @@
 {% load markdown_extras %}
 
-{{ item.content|convert_markdown|safe }}
+<div class="markdown-render">
+    {{ item.content|convert_markdown|safe }}
+</div>
