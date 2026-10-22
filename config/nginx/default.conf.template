@@ -1,7 +1,9 @@
 # upstream for uWSGI
 upstream uwsgi_app {
-#    server unix:/code/educa/uwsgi_app.sock;
-     server web:8080;
+    # server unix:/code/educa/uwsgi_app.sock;
+    server web:8080; 
+    # Внимание: контейнер web должен слушать порт 8080 в режиме HTTP!
+    # Если там используется режим --socket, замените ниже proxy_pass на uwsgi_pass.
 }
 
 # upstream for Daphne
@@ -9,20 +11,21 @@ upstream daphne {
     server daphne:9001;
 }
 
+# HTTP-сервер: перенаправление на HTTPS и проверка Certbot
 server {
     listen       80 default_server;
-    server_name vataman.ru www.vataman.ru;
+    server_name  vataman.ru www.vataman.ru;
     
     location /.well-known/acme-challenge/ {
         root /var/www/certbot;
     }
-	
+
     location / {
         return 301 https://$host$request_uri;
     }	
-
-}    
-
+}
+      
+# HTTPS-сервер: основная логика приложения
 server {
     listen       443 ssl;
     server_name vataman.ru www.vataman.ru;
@@ -33,37 +36,48 @@ server {
     
     error_log    stderr warn;
     access_log   /dev/stdout main;
-
+    # Динамический бэкенд (Django через uWSGI)
     location / {
-       #  include      /etc/nginx/uwsgi_params;
-       #  uwsgi_pass   uwsgi_app;
-	    proxy_pass http://uwsgi_app;
-        proxy_set_header Host $host;
-        proxy_set_header X-Real-IP $remote_addr;
-        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-        proxy_set_header X-Forwarded-Proto $scheme;
+         uwsgi_pass   uwsgi_app;
+         include      /etc/nginx/uwsgi_params;
+       # proxy_pass         http://uwsgi_app;
+
+        # Передаем важные заголовки в Django через параметры uwsgi
+        proxy_set_header   Host $host;
+        proxy_set_header   X-Real-IP $remote_addr;
+        proxy_set_header   X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header   X-Forwarded-Proto $scheme;
     }
 
+    # Веб-сокеты (Django Channels через Daphne)
     location /ws/ {
-        resolver 127.0.0.11 valid=10s;
+        # resolver 127.0.0.11 valid=10s;
+        # Напрямую передаем в upstream без resolver и переменных
+        # proxy_pass          http://daphne_app;
+	proxy_pass http://daphne;
 
-        set $daphne_upstream "http://daphne:9001";
-        proxy_pass          $daphne_upstream;
-
+        # Протокол HTTP/1.1 и заголовки смены протокола обязательны для WebSockets
         proxy_http_version  1.1;
         proxy_set_header    Upgrade $http_upgrade;
         proxy_set_header    Connection "upgrade";
+
+        # Передаем хост и IP, чтобы Django Channels (ASGI) пропустил запрос
+        proxy_set_header    Host $host;
+        proxy_set_header    X-Real-IP $remote_addr;
+        proxy_set_header    X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header    X-Forwarded-Proto $scheme;
+        
         proxy_redirect      off;
     }
 
+    # Статика
     location /static/ {
         alias /code/educa/static/;
    }
 
-
+    # Медиа-Файлы
     location /media/ {
         alias /code/educa/media/;
 
     }
 }
-
