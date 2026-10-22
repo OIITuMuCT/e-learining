@@ -11,15 +11,16 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 """
 import os
 from dotenv import load_dotenv
+
 load_dotenv()
 from pathlib import Path
 
 from django.conf.global_settings import INTERNAL_IPS, CACHE_MIDDLEWARE_ALIAS, CACHE_MIDDLEWARE_SECONDS, \
     CACHE_MIDDLEWARE_KEY_PREFIX, EMAIL_BACKEND
 from django.urls import reverse_lazy
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent.parent
-
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
@@ -88,7 +89,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = "educa.wsgi.application"
 
-
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
@@ -98,7 +98,6 @@ DATABASES = {
         "NAME": BASE_DIR / "db.sqlite3",
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
@@ -118,7 +117,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/5.1/topics/i18n/
 
@@ -129,7 +127,6 @@ TIME_ZONE = "UTC"
 USE_I18N = True
 
 USE_TZ = True
-
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
@@ -156,6 +153,7 @@ LOGIN_REDIRECT_URL = reverse_lazy('student_course_list')
 #         'LOCATION': '127.0.0.1:11211',
 #     }
 # }
+
 # redis
 CACHES = {
     'default': {
@@ -164,7 +162,6 @@ CACHES = {
     }
 }
 
-
 CACHE_MIDDLEWARE_ALIAS = 'default'
 CACHE_MIDDLEWARE_SECONDS = 60 * 15
 CACHE_MIDDLEWARE_KEY_PREFIX = 'educa'
@@ -172,7 +169,7 @@ CACHE_MIDDLEWARE_KEY_PREFIX = 'educa'
 # Django REST framework permissions
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': [
-            'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
+        'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
     ]
 }
 
