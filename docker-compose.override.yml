@@ -6,8 +6,10 @@ services:
     # Монтируем код, чтобы любые изменения в файлах на ПК сразу обновляли сайт без пересборки
     volumes:
       - .:/code
-      - static_files:/code/staticfiles
-      - media_files:/code/media
+#      - static_files:/code/static/
+#      - media_files:/code/media/
+      - static_files:/code/educa/static/
+      - media_files:/code/educa/media/
     environment:
       - DJANGO_SETTINGS_MODULE=educa.settings.local
 
@@ -29,8 +31,10 @@ services:
 #      - /etc/letsencrypt:/etc/letsencrypt:ro
       - ./certbot/www:/var/www/certbot
       - .:/code:ro
-      - static_files:/code/staticfiles:ro
-      - media_files:/code/media:ro
+#      - static_files:/code/staticfiles:ro
+#      - media_files:/code/media:ro
+      - static_files:/code/educa/static/:ro
+      - media_files:/code/educa/media/:ro
 
   db:
     # Опционально: открываем порт базы наружу, чтобы подключаться с ПК через DBeaver / DataGrip
