@@ -14,24 +14,48 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+
+# Django core imports
 from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
 from django.contrib.auth import views as auth_views
 from django.urls import include, path
 
+# Third-party app imports
+from drf_spectacular.views import (
+    SpectacularAPIView,
+    SpectacularRedocView,
+    SpectacularSwaggerView,
+)
+
+# Local application imports
 from courses.views import CourseListView
 
 urlpatterns = [
+    # Admin Panel
+    path("admin/", admin.site.urls),
+
+    # Auth
     path('accounts/login/', auth_views.LoginView.as_view(), name='login'),
     path('accounts/logout/', auth_views.LogoutView.as_view(), name='logout'),
-    path("admin/", admin.site.urls),
-    path('course/', include('courses.urls')),
+
+    # Local apps
     path('', CourseListView.as_view(), name='course_list'),
+    path('course/', include('courses.urls')),
     path('students/', include('students.urls')),
-    path('__debug__/', include('debug_toolbar.urls')),
-    path('api/', include('courses.api.urls', namespace='api')),
     path('chat/', include('chat.urls', namespace='chat')),
+
+    # API Endpoints
+    path('api/', include('courses.api.urls', namespace='api')),
+
+    # API Documentation Tools (drf-spectacular)
+    path('api/schema/', SpectacularAPIView.as_view(), name="schema"),
+    path('api/schema/swagger-ui/', SpectacularSwaggerView.as_view(url_name="schema"), name="swagger-ui"),
+    path('api/schema/redoc/', SpectacularRedocView.as_view(url_name="schema"), name="redoc"),
+
+    # Django Debug Toolbar
+    path('__debug__/', include('debug_toolbar.urls')),
 ]
 
 if settings.DEBUG:
