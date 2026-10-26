@@ -25,39 +25,50 @@ BASE_DIR = Path(__file__).resolve().parent.parent.parent
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
+# ==============================================================================
+# SECURITY WARNINGS & CORE SETTINGS
+# ==============================================================================
+
 # SECURITY WARNING: keep the secret key used in production secret!
-# SECRET_KEY = "django-insecure-l^4lwl#e)a=r&43s9s^0dkt5o&me=@6ukq$q18=&j9bmv#aj3t"
 SECRET_KEY = os.environ["SECRET_KEY"]
+
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
 ALLOWED_HOSTS = []
 
-INTERNAL_IPS = [
-    '127.0.0.1',
-]
-
-# Application definition
+# ==============================================================================
+# APPLICATION DEFINITION
+# ==============================================================================
 
 INSTALLED_APPS = [
+    # 1. Third-party apps that must be loaded before Django contrib apps
     "daphne",
-    "courses.apps.CoursesConfig",
+
+    # 2. Django core contrib apps
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    "students.apps.StudentsConfig",
+
+    # 3. Third-party libraries & tools
+
     "embed_video",
     "debug_toolbar",
     "redisboard",
     "rest_framework",
+    "drf_spectacular",
+
+    # 4. Local project apps
+    "courses.apps.CoursesConfig",
+    "students.apps.StudentsConfig",
     "chat.apps.ChatConfig",
 ]
 
 MIDDLEWARE = [
-    'debug_toolbar.middleware.DebugToolbarMiddleware',
+    'debug_toolbar.middleware.DebugToolbarMiddleware',  # Put it as high as possible
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     # 'django.middleware.cache.UpdateCacheMiddleware',
@@ -87,9 +98,14 @@ TEMPLATES = [
     },
 ]
 
+# Routing servers
 WSGI_APPLICATION = "educa.wsgi.application"
+ASGI_APPLICATION = 'educa.asgi.application'  # Required for Daphne & WebSockets
 
-# Database
+# ==============================================================================
+# DATABASE CONFIGURATION
+# ==============================================================================
+
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
 DATABASES = {
@@ -99,7 +115,36 @@ DATABASES = {
     }
 }
 
-# Password validation
+# ==============================================================================
+# CACHES & CHANNELS (REDIS)
+# ==============================================================================
+
+# Redis Cache Settings (Django 5.1)
+# https://docs.djangoproject.com/en/5.1/topics/cache/
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.redis.RedisCache',
+        'LOCATION': 'redis://127.0.0.1:6379',
+    }
+}
+
+CHANNEL_LAYERS = {
+    'default': {
+        'BACKEND': 'channels_redis.core.RedisChannelLayer',
+        'CONFIG': {
+            'hosts': [('127.0.0.1', 6379)],
+        },
+    },
+}
+
+CACHE_MIDDLEWARE_ALIAS = 'default'
+CACHE_MIDDLEWARE_SECONDS = 60 * 15
+CACHE_MIDDLEWARE_KEY_PREFIX = 'educa'
+
+# ==============================================================================
+# AUTHENTICATION & VALIDATION
+# ==============================================================================
+
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
 
 AUTH_PASSWORD_VALIDATORS = [
@@ -117,7 +162,10 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-# Internationalization
+# ==============================================================================
+# INTERNATIONALIZATION
+# ==============================================================================
+
 # https://docs.djangoproject.com/en/5.1/topics/i18n/
 
 LANGUAGE_CODE = "en-us"
@@ -128,60 +176,54 @@ USE_I18N = True
 
 USE_TZ = True
 
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/5.1/howto/static-files/
+# ==============================================================================
+# STATIC & MEDIA FILES
+# ==============================================================================
 
+# https://docs.djangoproject.com/en/5.1/howto/static-files/
 STATIC_URL = "static/"
 STATIC_ROOT = BASE_DIR / 'static'
 
-# Default primary key field type
-# https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
-
-DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
-
 # media
-
 MEDIA_URL = 'media/'
 MEDIA_ROOT = BASE_DIR / 'media'
 
 LOGIN_REDIRECT_URL = reverse_lazy('student_course_list')
 
-# memcached
-# CACHES = {
-#     'default': {
-#         'BACKEND': 'django.core.cache.backends.memcached.PyMemcacheCache',
-#         'LOCATION': '127.0.0.1:11211',
-#     }
-# }
+# ==============================================================================
+# EXTRA PACKAGES CONFIGURATION (DRF, Debug Toolbar, etc.)
+# ==============================================================================
 
-# redis
-CACHES = {
-    'default': {
-        'BACKEND': 'django.core.cache.backends.redis.RedisCache',
-        'LOCATION': 'redis://127.0.0.1:6379',
-    }
-}
-
-CACHE_MIDDLEWARE_ALIAS = 'default'
-CACHE_MIDDLEWARE_SECONDS = 60 * 15
-CACHE_MIDDLEWARE_KEY_PREFIX = 'educa'
-
-# Django REST framework permissions
+# Django Rest Framework
+# https://www.django-rest-framework.org/api-guide/permissions/#limitations-of-object-level-permissions
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
-    ]
+    ],
+    'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
 }
 
-ASGI_APPLICATION = 'educa.asgi.application'
+# Django Debug Toolbar
+INTERNAL_IPS = [
+    '127.0.0.1',
+]
 
-CHANNEL_LAYERS = {
-    'default': {
-        'BACKEND': 'channels_redis.core.RedisChannelLayer',
-        'CONFIG': {
-            'hosts': [('127.0.0.1', 6379)],
-        },
-    },
+# Default primary key field type
+# https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
+DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+# Drf-spectacular settings
+# https://drf-spectacular.readthedocs.io/en/latest/readme.html
+SPECTACULAR_SETTINGS = {
+    'TITLE': 'Your Project API',
+    'DESCRIPTION': 'Your project description',
+    'VERSION': '1.0.0',
+    'SERVE_INCLUDE_SCHEMA': False,
+    # OTHER SETTINGS
 }
+# ==============================================================================
+# EMAIL & SMTP
+# ==============================================================================
 
+# https://docs.djangoproject.com/en/5.1/topics/email/
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
