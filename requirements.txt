@@ -22,3 +22,4 @@ bleach==6.4.0
 Pygments==2.21.0
 markdown-checklist==0.4.4
 markdown-gfm-admonition==0.3.0
+drf-spectacular==0.30.0
