@@ -2,14 +2,14 @@ services:
   web:
     # На сервере код вшит внутрь образа, volumes для разработки удалены
     volumes:
-      - static_files:/code/staticfiles
-      - media_files:/code/media
+      - static_files:/code/educa/static/
+      - media_files:/code/educa/media/
     # Меняем запуск uWSGI с сокета на HTTP-порт 8080:
     command: [ "./wait-for-it.sh", "db:5432", "--",
                "uwsgi", "--socket", "0.0.0.0:8080",
                "--ini", "/code/config/uwsgi/uwsgi.ini",
                "--enable-threads", "--processes", "4",
-               "--threads", "2" ]
+               "--threads", "2", "--buffer-size=32768" ]
 
   nginx:
     image: nginx:1.25.5
@@ -19,8 +19,8 @@ services:
       - ./educa/ssl:/etc/nginx/ssl:ro
       - /etc/letsencrypt:/etc/letsencrypt:ro
       - ./certbot/www:/var/www/certbot
-      - static_files:/code/staticfiles:ro
-      - media_files:/code/media:ro
+      - static_files:/code/educa/static/:ro
+      - media_files:/code/educa/media/:ro
       - uwsgi_socket:/code/educa:ro
     ports:
       - "80:80"
