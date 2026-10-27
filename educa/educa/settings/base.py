@@ -215,7 +215,7 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 # Drf-spectacular settings
 # https://drf-spectacular.readthedocs.io/en/latest/readme.html
 SPECTACULAR_SETTINGS = {
-    'TITLE': 'Your Project API',
+    'TITLE': 'Educa Project API',
     'DESCRIPTION': 'Your project description',
     'VERSION': '1.0.0',
     'SERVE_INCLUDE_SCHEMA': False,
