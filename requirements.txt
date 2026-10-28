@@ -23,3 +23,5 @@ Pygments==2.21.0
 markdown-checklist==0.4.4
 markdown-gfm-admonition==0.3.0
 drf-spectacular==0.30.0
+djangorestframework-simplejwt==5.5.1
+pyjwt==2.15.1
