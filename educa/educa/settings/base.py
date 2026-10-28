@@ -197,6 +197,9 @@ LOGIN_REDIRECT_URL = reverse_lazy('student_course_list')
 # Django Rest Framework
 # https://www.django-rest-framework.org/api-guide/permissions/#limitations-of-object-level-permissions
 REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    ],
     'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
     ],

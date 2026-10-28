@@ -48,6 +48,7 @@ urlpatterns = [
 
     # API Endpoints
     path('api/', include('courses.api.urls', namespace='api')),
+    path('api/students/', include('students.api.urls')),
 
     # API Documentation Tools (drf-spectacular)
     path('api/schema/', SpectacularAPIView.as_view(), name="schema"),
