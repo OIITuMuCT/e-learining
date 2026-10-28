@@ -165,7 +165,7 @@ class ItemBase(models.Model):
         )
 
 class Text(ItemBase):
-    """Модель Text для хранения тестового содержимого. """
+    """Модель Text для хранения текстового содержимого."""
     content = models.TextField()
 
 class File(ItemBase):
