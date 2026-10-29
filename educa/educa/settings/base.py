@@ -222,7 +222,11 @@ SPECTACULAR_SETTINGS = {
     'DESCRIPTION': 'Your project description',
     'VERSION': '1.0.0',
     'SERVE_INCLUDE_SCHEMA': False,
-    # OTHER SETTINGS
+
+    # # ПОДКЛЮЧАЕМ НАШ ХУК АВТОМАТИЗАЦИИ:
+    # 'PREPROCESSING_HOOKS': [
+    #     'api.spectacular_hooks.custom_preprocessing_hook',
+    # ],
 }
 # ==============================================================================
 # EMAIL & SMTP

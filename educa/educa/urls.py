@@ -47,8 +47,9 @@ urlpatterns = [
     path('chat/', include('chat.urls', namespace='chat')),
 
     # API Endpoints
-    path('api/', include('courses.api.urls', namespace='api')),
-    path('api/students/', include('students.api.urls')),
+    # path('api/', include('courses.api.urls', namespace='api')),
+    # path('api/students/', include('students.api.urls')),
+    path('api/v1/', include('api.urls')),
 
     # API Documentation Tools (drf-spectacular)
     path('api/schema/', SpectacularAPIView.as_view(), name="schema"),
